@@ -3,7 +3,7 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#050508] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center section-surface-soft py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 text-center">
         <div>
           <h2 className="mt-6 text-9xl font-extrabold text-white">

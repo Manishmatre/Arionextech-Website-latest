@@ -18,8 +18,9 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -28,22 +29,40 @@ export default function Navbar() {
   }, [location.pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 md:pt-5">
-      <div
-        className={`container-premium transition-all duration-500 ${
-          scrolled ? 'max-w-5xl' : 'max-w-6xl'
-        }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-[100] pointer-events-none transition-[padding] duration-500 ease-out ${
+        scrolled ? 'pt-2 md:pt-3' : 'pt-4 md:pt-5'
+      }`}
+    >
+      <motion.div
+        className="container-premium pointer-events-auto"
+        initial={false}
+        animate={{
+          maxWidth: scrolled ? '64rem' : '80rem',
+        }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       >
-        <nav
-          className={`flex items-center justify-between px-4 md:px-6 py-3 md:py-3.5 rounded-2xl transition-all duration-500 ${
-            scrolled ? 'glass-strong shadow-2xl shadow-black/40' : 'glass'
+        <motion.nav
+          initial={false}
+          animate={{
+            paddingTop: scrolled ? 10 : 14,
+            paddingBottom: scrolled ? 10 : 14,
+          }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className={`flex items-center justify-between gap-3 px-4 md:px-6 rounded-2xl border transition-colors duration-500 ${
+            scrolled
+              ? 'glass-strong shadow-2xl shadow-black/50 border-white/12'
+              : 'glass border-white/8'
           }`}
         >
-          <Link to="/" className="flex items-center shrink-0">
-            <img
+          <Link to="/" className="flex items-center shrink-0 min-w-0">
+            <motion.img
               src={Logo}
               alt="ArionexTech"
-              className="h-9 md:h-10 w-auto brightness-0 invert"
+              initial={false}
+              animate={{ height: scrolled ? 32 : 40 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="w-auto brightness-0 invert"
               loading="eager"
             />
           </Link>
@@ -53,7 +72,7 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
                   location.pathname === link.path
                     ? 'text-white bg-white/10'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -74,12 +93,12 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-slate-300 hover:text-white rounded-lg"
+            className="lg:hidden p-2 text-slate-300 hover:text-white rounded-lg pointer-events-auto"
             aria-label="Toggle menu"
           >
             {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
           </button>
-        </nav>
+        </motion.nav>
 
         <AnimatePresence>
           {isOpen && (
@@ -87,7 +106,8 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -8, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              className="lg:hidden mt-2 glass-strong rounded-2xl overflow-hidden"
+              transition={{ duration: 0.22 }}
+              className="lg:hidden mt-2 glass-strong rounded-2xl overflow-hidden w-full border border-white/10 pointer-events-auto"
             >
               <div className="p-3 flex flex-col gap-1">
                 {navLinks.map((link) => (
@@ -110,7 +130,7 @@ export default function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </header>
   );
 }

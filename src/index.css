@@ -155,6 +155,17 @@ body {
   padding: 6rem 0;
 }
 
+.section-surface {
+  background: rgba(8, 8, 14, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.section-surface-soft {
+  background: rgba(5, 5, 8, 0.55);
+  /* No backdrop-filter here — it breaks position:fixed on navbar descendants */
+}
+
 @media (min-width: 768px) {
   .section-pad {
     padding: 8rem 0;
@@ -282,8 +293,10 @@ body {
 .card-premium {
   position: relative;
   border-radius: 1.25rem;
-  background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card-premium:hover {
@@ -392,4 +405,505 @@ body {
 .dark-form input.border-red-500,
 .dark-form textarea.border-red-500 {
   border-color: #f87171;
+}
+
+/* Hero section */
+.hero-radial-spot {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-visual-stage {
+  position: relative;
+  perspective: 900px;
+}
+
+.hero-orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
+  border: 1px dashed rgba(129, 140, 248, 0.2);
+  border-radius: 50%;
+  animation: hero-orbit-spin 28s linear infinite;
+  z-index: 0;
+}
+
+.hero-orbit-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(165, 180, 252, 0.8);
+  box-shadow: 0 0 12px rgba(129, 140, 248, 0.6);
+}
+
+.hero-orbit-dot-1 { top: -4px; left: 50%; margin-left: -4px; }
+.hero-orbit-dot-2 { bottom: 20%; right: -4px; }
+.hero-orbit-dot-3 { bottom: 20%; left: -4px; }
+
+.hero-terminal {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 24px 48px -20px rgba(99, 102, 241, 0.35);
+}
+
+.hero-beam {
+  position: absolute;
+  top: -20%;
+  left: 20%;
+  width: 40%;
+  height: 140%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(129, 140, 248, 0.04) 45%,
+    rgba(34, 211, 238, 0.06) 55%,
+    transparent 100%
+  );
+  transform: skewX(-12deg);
+  animation: hero-beam-shift 12s ease-in-out infinite alternate;
+  opacity: 0.8;
+}
+
+.hero-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: #6ee7b7;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.hero-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
+  animation: hero-live-pulse 2s ease-in-out infinite;
+}
+
+.hero-pipeline-step {
+  padding: 0.4rem 0.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.hero-pipeline-done {
+  border-color: rgba(52, 211, 153, 0.25);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.hero-pipeline-active {
+  border-color: rgba(129, 140, 248, 0.45);
+  background: rgba(99, 102, 241, 0.12);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+  animation: hero-pipeline-glow 2.5s ease-in-out infinite;
+}
+
+.hero-pillar-card {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+@keyframes hero-beam-shift {
+  0% { transform: skewX(-12deg) translateX(-4%); opacity: 0.5; }
+  100% { transform: skewX(-12deg) translateX(6%); opacity: 0.9; }
+}
+
+@keyframes hero-live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+@keyframes hero-pipeline-glow {
+  0%, 100% { box-shadow: 0 0 16px rgba(99, 102, 241, 0.12); }
+  50% { box-shadow: 0 0 24px rgba(99, 102, 241, 0.28); }
+}
+
+.hero-float-badge {
+  position: absolute;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  color: rgba(165, 180, 252, 0.85);
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  background: rgba(99, 102, 241, 0.1);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.hero-float-badge-a {
+  top: 8%;
+  right: -4%;
+}
+
+.hero-float-badge-b {
+  bottom: 12%;
+  left: -6%;
+}
+
+@keyframes hero-orbit-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 1023px) {
+  .hero-orbit-ring,
+  .hero-float-badge {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orbit-ring,
+  .hero-float-badge,
+  .hero-cursor-blink,
+  .hero-beam,
+  .hero-live-dot,
+  .hero-pipeline-active {
+    animation: none !important;
+  }
+}
+
+/* Tech ambient background — site-wide */
+.tech-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.tech-ambient-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+
+.tech-ambient-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 10%, rgba(99, 102, 241, 0.12), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 85% 75%, rgba(34, 211, 238, 0.08), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(79, 70, 229, 0.05), transparent 60%);
+  animation: ambient-mesh-shift 18s ease-in-out infinite alternate;
+}
+
+.tech-ambient-grid-3d {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -30%;
+  height: 70%;
+  background-image:
+    linear-gradient(rgba(129, 140, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129, 140, 248, 0.07) 1px, transparent 1px);
+  background-size: 72px 72px;
+  transform: perspective(420px) rotateX(68deg);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(to top, black 0%, transparent 85%);
+  animation: grid-floor-drift 24s linear infinite;
+  opacity: 0.5;
+}
+
+.tech-ambient-scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(129, 140, 248, 0.03) 48%,
+    transparent 52%
+  );
+  background-size: 100% 240px;
+  animation: ambient-scan 8s linear infinite;
+  opacity: 0.35;
+}
+
+.tech-floating-tag {
+  position: absolute;
+  font-family: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: rgba(165, 180, 252, 0.35);
+  border: 1px solid rgba(129, 140, 248, 0.15);
+  background: rgba(99, 102, 241, 0.06);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  animation: tech-tag-float 9s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.tech-wire-shape {
+  position: absolute;
+  pointer-events: none;
+}
+
+.tech-wire-cube {
+  top: 14%;
+  right: 6%;
+  width: 72px;
+  height: 72px;
+  perspective: 200px;
+  opacity: 0.35;
+}
+
+.tech-wire-cube-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: wire-cube-spin 22s linear infinite;
+}
+
+.tech-wire-face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(129, 140, 248, 0.45);
+  background: rgba(99, 102, 241, 0.04);
+}
+
+.tech-wire-face:nth-child(1) { transform: translateZ(36px); }
+.tech-wire-face:nth-child(2) { transform: rotateY(180deg) translateZ(36px); }
+.tech-wire-face:nth-child(3) { transform: rotateY(90deg) translateZ(36px); }
+.tech-wire-face:nth-child(4) { transform: rotateY(-90deg) translateZ(36px); }
+.tech-wire-face:nth-child(5) { transform: rotateX(90deg) translateZ(36px); }
+.tech-wire-face:nth-child(6) { transform: rotateX(-90deg) translateZ(36px); }
+
+.tech-wire-ring {
+  bottom: 18%;
+  left: 7%;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(129, 140, 248, 0.1) inset,
+    0 0 40px rgba(99, 102, 241, 0.08);
+  animation: wire-ring-pulse 6s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+.tech-wire-ring::before {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border: 1px dashed rgba(165, 180, 252, 0.2);
+  border-radius: 50%;
+  animation: wire-ring-spin 14s linear infinite reverse;
+}
+
+@keyframes ambient-mesh-shift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(2%, -3%) scale(1.05); }
+}
+
+@keyframes grid-floor-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 72px 72px; }
+}
+
+@keyframes ambient-scan {
+  0% { background-position: 0 -240px; }
+  100% { background-position: 0 100vh; }
+}
+
+@keyframes tech-tag-float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.35; }
+  50% { transform: translateY(-12px) translateX(4px); opacity: 0.55; }
+}
+
+@keyframes wire-cube-spin {
+  0% { transform: rotateX(-18deg) rotateY(0deg); }
+  100% { transform: rotateX(-18deg) rotateY(360deg); }
+}
+
+@keyframes wire-ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50% { transform: scale(1.08); opacity: 0.5; }
+}
+
+@keyframes wire-ring-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .tech-floating-tag,
+  .tech-wire-cube,
+  .tech-wire-ring {
+    display: none;
+  }
+
+  .tech-ambient-canvas {
+    opacity: 0.35;
+  }
+
+  .tech-ambient-grid-3d {
+    opacity: 0.3;
+  }
+}
+
+/* Custom cursor FX — decorative only; default cursor stays visible */
+.cursor-fx-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 45;
+  overflow: hidden;
+}
+
+.cursor-floor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  margin: -280px 0 0 -280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.14) 0%,
+    rgba(79, 70, 229, 0.07) 30%,
+    rgba(34, 211, 238, 0.04) 50%,
+    transparent 68%
+  );
+  filter: blur(32px);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.cursor-floor-glow-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  margin: -110px 0 0 -110px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(165, 180, 252, 0.22) 0%,
+    rgba(129, 140, 248, 0.1) 40%,
+    transparent 70%
+  );
+  filter: blur(12px);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: rgba(165, 180, 252, 0.9);
+  box-shadow: 0 0 12px 2px rgba(129, 140, 248, 0.45);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(129, 140, 248, 0.45);
+  background: rgba(99, 102, 241, 0.04);
+  pointer-events: none;
+  will-change: transform;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+/* Page transitions */
+.motion-page {
+  width: 100%;
+}
+
+/* Portfolio card micro-interactions */
+.portfolio-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.portfolio-card-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.06) 55%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: opacity 0.4s ease;
+  z-index: 20;
+}
+
+.portfolio-card:hover .portfolio-card-shine {
+  opacity: 1;
+  animation: portfolio-shine 0.85s ease forwards;
+}
+
+@keyframes portfolio-shine {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-page {
+    animation: none !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .tech-ambient,
+  .tech-ambient * {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .portfolio-card,
+  .portfolio-card * {
+    transform: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .portfolio-card-shine,
+  .portfolio-card:hover .portfolio-card-shine {
+    animation: none !important;
+    opacity: 0 !important;
+  }
 }

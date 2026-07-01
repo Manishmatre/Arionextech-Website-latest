@@ -1,9 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import LocalBusinessSchema from './components/LocalBusinessSchema';
+import PageTransitionLayout from './components/motion/PageTransitionLayout';
+import CustomCursor from './components/motion/CustomCursor';
+import TechAmbientBackground from './components/motion/TechAmbientBackground';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -37,48 +39,53 @@ import ProductDetailPage from './pages/ProductDetail';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#050508] text-slate-200">
+    <>
+      <TechAmbientBackground />
+      <CustomCursor />
       <ScrollToTop />
       <Navbar />
-      <LocalBusinessSchema />
-      <main className="flex-grow">
-        <AnimatePresence mode="wait">
+
+      <div className="relative min-h-screen flex flex-col section-surface-soft text-slate-200">
+        <LocalBusinessSchema />
+        <main className="flex-grow relative z-[1]">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/services/web-development" element={<WebDevelopment />} />
-            <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
-            <Route path="/services/cloud-solutions" element={<CloudSolutions />} />
-            <Route path="/services/ai-ml" element={<AiMl />} />
-            <Route path="/services/devops" element={<DevOps />} />
-            <Route path="/services/cybersecurity" element={<Cybersecurity />} />
-            <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
-            <Route path="/services/seo-backlinks" element={<SeoBacklinks />} />
-            <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
-            <Route path="/services/graphic-design" element={<GraphicDesign />} />
-            <Route path="/services/staff-augmentation" element={<StaffAugmentation />} />
-            <Route path="/services/custom-software" element={<CustomSoftware />} />
-            <Route path="/services/wordpress-development" element={<WordPressDevelopment />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:slug" element={<ProductDetailPage />} />
-            <Route path="/internships" element={<Internships />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/faqs" element={<FAQs />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/help" element={<HelpCenter />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/testimonials" element={<Testimonials />} />
-            <Route path="/projects/:slug" element={<ProjectDetail />} />
-            <Route path="*" element={<NotFound />} />
+            <Route element={<PageTransitionLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/services/web-development" element={<WebDevelopment />} />
+              <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
+              <Route path="/services/cloud-solutions" element={<CloudSolutions />} />
+              <Route path="/services/ai-ml" element={<AiMl />} />
+              <Route path="/services/devops" element={<DevOps />} />
+              <Route path="/services/cybersecurity" element={<Cybersecurity />} />
+              <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
+              <Route path="/services/seo-backlinks" element={<SeoBacklinks />} />
+              <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+              <Route path="/services/graphic-design" element={<GraphicDesign />} />
+              <Route path="/services/staff-augmentation" element={<StaffAugmentation />} />
+              <Route path="/services/custom-software" element={<CustomSoftware />} />
+              <Route path="/services/wordpress-development" element={<WordPressDevelopment />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:slug" element={<ProductDetailPage />} />
+              <Route path="/internships" element={<Internships />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/faqs" element={<FAQs />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/help" element={<HelpCenter />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/projects/:slug" element={<ProjectDetail />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Routes>
-        </AnimatePresence>
-      </main>
-      <Footer />
-    </div>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
 

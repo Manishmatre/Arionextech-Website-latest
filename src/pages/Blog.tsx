@@ -88,7 +88,7 @@ const staggerContainer = {
 
 const Blog: React.FC = () => {
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="Tech Insights"
         title="Latest"
@@ -97,7 +97,7 @@ const Blog: React.FC = () => {
       />
 
       {/* Blog Posts Grid */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <motion.div
             variants={staggerContainer}

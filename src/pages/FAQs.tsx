@@ -112,7 +112,7 @@ const FAQs = () => {
   };
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="Support Center"
         title="Frequently Asked"
@@ -121,7 +121,7 @@ const FAQs = () => {
       />
 
       {/* FAQs Content */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <div className="max-w-4xl mx-auto">
             {faqs.map((category, categoryIndex) => (

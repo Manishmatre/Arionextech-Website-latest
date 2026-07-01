@@ -2,11 +2,9 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/premium/PageHero';
-import { getAllProjects } from '../lib/projects';
+import { getAllProjects, getDemoProjects } from '../lib/projects';
 import type { PortfolioProject } from '../types/portfolio';
-import { CATEGORY_LABELS } from '../types/portfolio';
 import {
-  ArrowTopRightOnSquareIcon,
   MagnifyingGlassIcon,
   StarIcon,
   CodeBracketIcon,
@@ -15,11 +13,11 @@ import {
   CpuChipIcon,
   PaintBrushIcon,
   BuildingOfficeIcon,
-  CalendarIcon,
   UserGroupIcon,
   CheckCircleIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
+import PortfolioCard from '../components/motion/PortfolioCard';
 
 const categories = [
   { id: 'all', name: 'All Projects', icon: null },
@@ -41,14 +39,14 @@ const stats = [
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [projects, setProjects] = useState<PortfolioProject[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<PortfolioProject[]>(getDemoProjects());
 
   useEffect(() => {
     getAllProjects()
       .then(setProjects)
-      .catch(() => setProjects([]))
-      .finally(() => setLoading(false));
+      .catch(() => {
+        /* demo projects already visible */
+      });
   }, []);
 
   const filteredProjects = useMemo(() => {
@@ -73,7 +71,7 @@ export default function Portfolio() {
   }, [projects]);
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="Our work"
         title="Portfolio of"
@@ -159,88 +157,13 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="card-premium h-96 animate-pulse bg-white/5" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project, index) => (
-                <motion.article
-                  key={project.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  className="card-premium hover:shadow-2xl transition-all duration-300 overflow-hidden group"
-                >
-                  <Link to={`/projects/${project.slug}`} className="block">
-                    <div className="relative overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                      <div className="absolute top-4 right-4 flex items-center gap-2">
-                        {project.isFromErp && (
-                          <span className="text-[10px] font-semibold uppercase tracking-wide bg-indigo-600 text-white px-2 py-1 rounded-full">
-                            ERP Live
-                          </span>
-                        )}
-                      </div>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => (
+              <PortfolioCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
 
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-sm text-primary font-medium bg-primary/10 px-3 py-1 rounded-full">
-                          {CATEGORY_LABELS[project.category] || project.category}
-                        </span>
-                        <div className="flex items-center text-sm text-slate-500">
-                          <CalendarIcon className="h-4 w-4 mr-1" />
-                          {project.duration}
-                        </div>
-                      </div>
-
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-slate-400 text-sm mb-3">Client: {project.client}</p>
-                      <p className="text-slate-300 mb-4 line-clamp-2 text-sm leading-relaxed">{project.description}</p>
-
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 3).map((tech) => (
-                          <span key={tech} className="text-xs bg-white/5 text-slate-300 px-2 py-1 rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                        {project.technologies.length > 3 && (
-                          <span className="text-xs bg-white/5 text-slate-300 px-2 py-1 rounded-full">
-                            +{project.technologies.length - 3}
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                        <div className="flex items-center text-sm text-slate-500">
-                          <UserGroupIcon className="h-4 w-4 mr-1" />
-                          {project.teamSize} members
-                        </div>
-                        <span className="text-indigo-400 font-medium text-sm flex items-center">
-                          View case study
-                          <ArrowTopRightOnSquareIcon className="ml-1 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.article>
-              ))}
-            </div>
-          )}
-
-          {!loading && filteredProjects.length === 0 && (
+          {filteredProjects.length === 0 && (
             <div className="text-center py-16">
               <MagnifyingGlassIcon className="h-16 w-16 mx-auto text-slate-500 mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">No projects found</h3>

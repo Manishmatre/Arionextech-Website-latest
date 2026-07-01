@@ -1,10 +1,18 @@
 /** In dev, always use same-origin + Vite proxy. In prod, set VITE_API_URL. */
 const API_URL = import.meta.env.DEV ? '' : (import.meta.env.VITE_API_URL || '');
 
+const FETCH_TIMEOUT_MS = 6000;
+
 async function get<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`);
-  if (!res.ok) throw new Error(`API ${res.status}`);
-  return res.json();
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    const res = await fetch(`${API_URL}${path}`, { signal: controller.signal });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    return res.json();
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 export async function fetchSiteData() {
@@ -43,16 +51,23 @@ export async function submitContact(payload: {
   subject?: string;
   message: string;
 }) {
-  const res = await fetch(`${API_URL}/api/public/contact`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error((err as { error?: string }).error || 'Failed to send');
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch(`${API_URL}/api/public/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error((err as { error?: string }).error || 'Failed to send');
+    }
+    return res.json();
+  } finally {
+    clearTimeout(timer);
   }
-  return res.json();
 }
 
 export interface ApiProduct {

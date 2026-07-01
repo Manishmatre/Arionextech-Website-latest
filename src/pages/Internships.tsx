@@ -246,7 +246,7 @@ const Internships: React.FC = () => {
   });
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="Professional Training Programs"
         title="Internship"

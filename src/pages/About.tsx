@@ -33,7 +33,7 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <SEO 
         title="About ArionexTech - Leading Software Development Company | Our Story & Team"
         description="Learn about ArionexTech, a premier software development company with 5+ years of experience. Meet our expert team and discover our mission to transform businesses through innovative technology solutions."
@@ -48,7 +48,7 @@ const About = () => {
       />
 
       {/* Stats Section */}
-      <section className="py-12 bg-[#08080e]">
+      <section className="py-12 section-surface">
         <div className="container-premium">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((stat, index) => {
@@ -116,28 +116,32 @@ const About = () => {
                 </p>
               </div>
             </motion.div>
-            <motion.div 
-              className="md:w-1/2 bg-white/5 rounded-xl overflow-hidden"
+            <motion.div
+              className="md:w-1/2"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-indigo-500/20 to-cyan-500/10 h-80 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent"></div>
-                <div className="absolute top-4 left-4 w-16 h-16 bg-white/30 rounded-full"></div>
-                <div className="absolute top-8 right-8 w-12 h-12 bg-cyan-400/20 rounded-full"></div>
-                <div className="absolute bottom-6 left-8 w-20 h-20 bg-primary/20 rounded-full"></div>
-                <div className="absolute bottom-4 right-4 w-8 h-8 bg-white/40 rounded-full"></div>
-                <div className="w-full h-full flex flex-col items-center justify-center relative z-10">
+              <div className="card-premium relative overflow-hidden min-h-[320px] md:min-h-[380px] flex items-center justify-center mesh-bg">
+                <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col items-center text-center px-8 py-12">
                   <img
                     src={Logo}
-                    alt="ArionexTech Logo"
-                    className="h-32 w-auto mb-4 select-none"
+                    alt="ArionexTech Software"
+                    className="h-14 sm:h-16 md:h-[4.5rem] w-auto brightness-0 invert select-none"
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="text-sm text-primary/70 mt-2">Innovation • Excellence • Growth</div>
+                  <p className="mt-6 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-indigo-400/90">
+                    Innovation · Excellence · Growth
+                  </p>
+                  <p className="mt-3 text-sm text-slate-500 max-w-xs leading-relaxed">
+                    Enterprise software studio — Jabalpur, India
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -146,7 +150,7 @@ const About = () => {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <motion.div 
             className="text-center mb-16"

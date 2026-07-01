@@ -52,7 +52,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/8 bg-[#030306]">
+    <footer className="relative z-[1] border-t border-white/8 section-surface">
       <div className="absolute inset-0 mesh-bg opacity-50 pointer-events-none" />
 
       <div className="container-premium relative z-10 pt-20 pb-10">

@@ -42,7 +42,7 @@ export default function ProductCaseStudy({ product, related = [] }: ProductCaseS
   const screenshots = product.gallery.length > 1 ? product.gallery : [];
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 mesh-bg border-b border-white/8 overflow-hidden">
         <div className="absolute inset-0 grid-pattern pointer-events-none opacity-40" />
         <div className="container-premium relative z-10">
@@ -142,7 +142,7 @@ export default function ProductCaseStudy({ product, related = [] }: ProductCaseS
       </section>
 
       {benefits.length > 0 && (
-        <section className="py-14 border-b border-white/8 bg-[#08080e]">
+        <section className="py-14 border-b border-white/8 section-surface">
           <div className="container-premium">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {benefits.map((benefit, i) => (
@@ -200,7 +200,7 @@ export default function ProductCaseStudy({ product, related = [] }: ProductCaseS
       </section>
 
       {screenshots.length > 0 && (
-        <section className="py-16 bg-[#08080e] border-y border-white/8">
+        <section className="py-16 section-surface border-y border-white/8">
           <div className="container-premium">
             <h2 className="section-heading text-center mb-10">
               Product <span className="highlight">screenshots</span>
@@ -245,7 +245,7 @@ export default function ProductCaseStudy({ product, related = [] }: ProductCaseS
       </section>
 
       {related.length > 0 && (
-        <section className="section-pad bg-[#08080e]">
+        <section className="section-pad section-surface">
           <div className="container-premium">
             <h2 className="section-heading text-center mb-12">
               Related <span className="highlight">solutions</span>

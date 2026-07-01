@@ -3,29 +3,28 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowRightIcon,
-  BoltIcon,
   BuildingOffice2Icon,
   CheckCircleIcon,
   CodeBracketIcon,
   CpuChipIcon,
   DevicePhoneMobileIcon,
   GlobeAltIcon,
-  HeartIcon,
-  RocketLaunchIcon,
   ShieldCheckIcon,
-  SparklesIcon,
   StarIcon,
-  WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline';
 import SEO from '../components/SEO';
+import HomeHero from '../components/premium/HomeHero';
 import SectionHeader from '../components/premium/SectionHeader';
 import {
   fetchSiteData,
-  fetchProducts,
-  fetchTestimonials,
   mapProductToCard,
   type ApiTestimonial,
 } from '../lib/publicApi';
+import {
+  DEMO_STATS,
+  DEMO_TESTIMONIALS,
+  getDemoProductCards,
+} from '../data/demoSiteData';
 
 import candelaImage from '../assets/projects_Images/candelapublicshool-website.png';
 import geotechImage from '../assets/projects_Images/geotech-website.png';
@@ -82,12 +81,6 @@ const SHOWCASE = [
   { title: 'ArionexTech Platform', image: arionextechImage, tag: 'SaaS', url: '/' },
 ];
 
-const CATEGORY_ICON: Record<string, React.ReactNode> = {
-  Construction: <WrenchScrewdriverIcon className="w-5 h-5" />,
-  Dental: <HeartIcon className="w-5 h-5" />,
-  ERP: <BuildingOffice2Icon className="w-5 h-5" />,
-};
-
 function statusColor(status: string) {
   if (status === 'Active') return 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30';
   if (status === 'Beta') return 'text-sky-400 bg-sky-500/15 border-sky-500/30';
@@ -95,9 +88,9 @@ function statusColor(status: string) {
 }
 
 export default function Home() {
-  const [products, setProducts] = useState<ReturnType<typeof mapProductToCard>[]>([]);
-  const [testimonials, setTestimonials] = useState<ApiTestimonial[]>([]);
-  const [stats, setStats] = useState({ products: 5, projects: 50, clients: 40, industries: 6 });
+  const [products, setProducts] = useState(getDemoProductCards());
+  const [testimonials, setTestimonials] = useState<ApiTestimonial[]>(DEMO_TESTIMONIALS.slice(0, 3));
+  const [stats, setStats] = useState(DEMO_STATS);
 
   useEffect(() => {
     fetchSiteData()
@@ -107,8 +100,7 @@ export default function Home() {
         if (data.stats) setStats(data.stats);
       })
       .catch(() => {
-        fetchProducts().then((d) => d?.length && setProducts(d.slice(0, 6).map(mapProductToCard))).catch(() => {});
-        fetchTestimonials().then((d) => d?.length && setTestimonials(d.slice(0, 3))).catch(() => {});
+        /* keep demo data already shown */
       });
   }, []);
 
@@ -119,90 +111,10 @@ export default function Home() {
         description="We build industry-leading ERP platforms, custom software, and digital products for Construction, Healthcare, EdTech, and enterprise."
       />
 
-      {/* ─── HERO ─── */}
-      <section className="relative min-h-screen flex items-center mesh-bg overflow-hidden">
-        <div className="absolute inset-0 grid-pattern" />
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[140px] animate-pulse-glow" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px]" />
-
-        <div className="container-premium relative z-10 pt-32 pb-24 md:pt-40">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl"
-          >
-            <span className="badge mb-8">
-              <SparklesIcon className="w-3.5 h-3.5" />
-              Enterprise Software Studio
-            </span>
-
-            <h1 className="font-display text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.25rem] font-bold tracking-tight leading-[1.02] text-white">
-              Software that moves
-              <br />
-              <span className="text-gradient">industries forward</span>
-            </h1>
-
-            <p className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
-              ArionexTech builds production-grade ERP platforms, custom enterprise systems, and
-              digital products — from Construction &amp; Dental to full-stack SaaS.
-            </p>
-
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="btn-primary">
-                <RocketLaunchIcon className="w-5 h-5" />
-                Start your project
-              </Link>
-              <Link to="/products" className="btn-ghost">
-                Explore products
-                <ArrowRightIcon className="w-4 h-4" />
-              </Link>
-            </div>
-
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
-              {[
-                { n: `${stats.projects}+`, l: 'Projects shipped' },
-                { n: `${stats.clients}+`, l: 'Enterprise clients' },
-                { n: `${stats.products}+`, l: 'Live products' },
-                { n: '24/7', l: 'Support & SLA' },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="font-display text-2xl md:text-3xl font-bold text-white">{s.n}</div>
-                  <div className="text-sm text-slate-500 mt-1">{s.l}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Floating product pills */}
-          {products.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="hidden xl:flex absolute right-8 top-1/2 -translate-y-1/2 flex-col gap-3 w-72"
-            >
-              {products.slice(0, 3).map((p, i) => (
-                <div
-                  key={p.id}
-                  className="glass rounded-xl p-4 animate-float"
-                  style={{ animationDelay: `${i * 1.2}s` }}
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-indigo-400">{CATEGORY_ICON[p.category] || <BoltIcon className="w-5 h-5" />}</span>
-                    <span className="text-xs text-slate-500 uppercase tracking-wider">{p.category}</span>
-                  </div>
-                  <p className="font-semibold text-white text-sm">{p.name}</p>
-                  <p className="text-xs text-slate-500 mt-1 line-clamp-1">{p.description}</p>
-                </div>
-              ))}
-            </motion.div>
-          )}
-        </div>
-      </section>
+      <HomeHero stats={stats} />
 
       {/* ─── TECH MARQUEE ─── */}
-      <section className="border-y border-white/8 bg-[#08080e] py-5 overflow-hidden">
+      <section className="border-y border-white/8 section-surface py-5 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...TECH_STACK, ...TECH_STACK].map((t, i) => (
             <span key={`${t}-${i}`} className="mx-8 text-sm font-medium text-slate-600 uppercase tracking-widest">
@@ -244,7 +156,7 @@ export default function Home() {
       </section>
 
       {/* ─── LIVE PRODUCTS ─── */}
-      <section className="section-pad bg-[#08080e] relative overflow-hidden">
+      <section className="section-pad section-surface relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <div className="container-premium relative z-10">
           <SectionHeader
@@ -254,14 +166,7 @@ export default function Home() {
             description="Every product below is managed in our internal ERP — add, update, and publish from one dashboard."
           />
 
-          {products.length === 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="card-premium h-64 animate-pulse bg-white/5" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {products.map((p, i) => (
                 <motion.div
                   key={p.id}
@@ -301,7 +206,6 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
-          )}
 
           <div className="text-center mt-12">
             <Link to="/products" className="btn-ghost">
@@ -345,7 +249,7 @@ export default function Home() {
       </section>
 
       {/* ─── SHOWCASE ─── */}
-      <section className="section-pad bg-[#08080e]">
+      <section className="section-pad section-surface">
         <div className="container-premium">
           <SectionHeader
             badge="Selected work"

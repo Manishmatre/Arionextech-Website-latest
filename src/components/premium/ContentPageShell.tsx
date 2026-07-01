@@ -10,7 +10,7 @@ interface LegalPageLayoutProps {
 
 export function LegalPageLayout({ title, description, updated, children }: LegalPageLayoutProps) {
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero badge="Legal" title={title} description={description}>
         {updated && <p className="mt-4 text-sm text-slate-500">Last updated: {updated}</p>}
       </PageHero>
@@ -41,7 +41,7 @@ export function ContentPageShell({
   className = '',
 }: ContentPageShellProps) {
   return (
-    <div className={`bg-[#050508] min-h-screen ${className}`}>
+    <div className={`min-h-screen section-surface-soft ${className}`}>
       <PageHero badge={badge} title={title} highlight={highlight} description={description}>
         {heroChildren}
       </PageHero>

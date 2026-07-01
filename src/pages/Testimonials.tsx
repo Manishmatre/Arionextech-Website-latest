@@ -177,7 +177,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="Client Testimonials"
         title="What Our"
@@ -198,7 +198,7 @@ const Testimonials = () => {
       </PageHero>
 
       {/* Featured Testimonial Carousel */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

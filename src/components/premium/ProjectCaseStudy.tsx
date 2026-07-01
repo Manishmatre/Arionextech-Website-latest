@@ -30,7 +30,7 @@ export default function ProjectCaseStudy({ project, related = [] }: ProjectCaseS
   const resultEntries = Object.entries(project.results || {});
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       {/* Hero */}
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 mesh-bg border-b border-white/8 overflow-hidden">
         <div className="absolute inset-0 grid-pattern pointer-events-none opacity-40" />
@@ -113,7 +113,7 @@ export default function ProjectCaseStudy({ project, related = [] }: ProjectCaseS
 
       {/* Results */}
       {resultEntries.length > 0 && (
-        <section className="py-14 border-b border-white/8 bg-[#08080e]">
+        <section className="py-14 border-b border-white/8 section-surface">
           <div className="container-premium">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {resultEntries.map(([key, value], i) => (
@@ -180,7 +180,7 @@ export default function ProjectCaseStudy({ project, related = [] }: ProjectCaseS
 
       {/* Gallery */}
       {gallery.length > 1 && (
-        <section className="py-16 bg-[#08080e] border-y border-white/8">
+        <section className="py-16 section-surface border-y border-white/8">
           <div className="container-premium">
             <h2 className="section-heading text-center mb-10">
               Project <span className="highlight">screenshots</span>
@@ -229,7 +229,7 @@ export default function ProjectCaseStudy({ project, related = [] }: ProjectCaseS
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="section-pad bg-[#08080e]">
+        <section className="section-pad section-surface">
           <div className="container-premium">
             <h2 className="section-heading text-center mb-12">
               More <span className="highlight">case studies</span>

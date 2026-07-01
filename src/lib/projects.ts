@@ -72,6 +72,10 @@ export async function loadErpProjects(): Promise<PortfolioProject[]> {
   return erpCache;
 }
 
+export function getDemoProjects(): PortfolioProject[] {
+  return [...STATIC_PORTFOLIO_PROJECTS];
+}
+
 export function getStaticProjects(): PortfolioProject[] {
   return STATIC_PORTFOLIO_PROJECTS;
 }

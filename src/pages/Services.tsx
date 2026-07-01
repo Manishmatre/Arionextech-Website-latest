@@ -133,7 +133,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="What We Offer"
         title="Our"
@@ -200,7 +200,7 @@ const Services = () => {
       </section>
 
       {/* Engagement models */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <SectionHeader
             badge="Flexible engagement"

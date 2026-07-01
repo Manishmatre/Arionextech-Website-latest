@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PageHero from '../components/premium/PageHero';
 import { motion } from 'framer-motion';
 import { MapPinIcon, PhoneIcon, EnvelopeIcon, CheckCircleIcon, ClockIcon } from '@heroicons/react/24/outline';
-import emailjs from '@emailjs/browser';
+import { submitContactForm } from '../lib/contactSubmit';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const Contact = () => {
@@ -15,6 +15,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [submitNote, setSubmitNote] = useState('');
   const [errors, setErrors] = useState<{[key: string]: string}>({});
 
   const validateForm = () => {
@@ -56,39 +57,23 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
-    
+    setSubmitNote('');
+
     try {
- 
-      if (!validateForm()) {
-        setIsSubmitting(false);
-        return;
-      }
-
-      // EmailJS configuration
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_2comkqc';
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_giacn2x';
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      // Template parameters matching your EmailJS template
-      const templateParams = {
+      const result = await submitContactForm({
         name: formData.name,
         email: formData.email,
-        subject: formData.subject,
+        phone: formData.number,
+        subject: formData.subject || 'Website inquiry',
         message: formData.message,
-        number: formData.number,
-        to_email: 'arionextech@gmail.com'
-      };
+      });
 
-      // Check if public key is available
-      if (!publicKey) {
-        throw new Error('EmailJS public key not configured. Please add VITE_EMAILJS_PUBLIC_KEY to your .env file.');
-      }
-
-      // Send email using EmailJS
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
-
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -96,13 +81,24 @@ const Contact = () => {
         message: '',
         number: '',
       });
-      
-      // Show success message
+
+      if (result.emailSent && result.apiSaved) {
+        setSubmitNote('Sent to our team email and saved to our system.');
+      } else if (result.emailSent) {
+        setSubmitNote('Sent to our team email.');
+      } else if (result.apiSaved) {
+        setSubmitNote('Saved to our system — we will get back to you soon.');
+      }
+
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 5000);
+      setTimeout(() => {
+        setShowSuccess(false);
+        setSubmitNote('');
+      }, 6000);
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('There was an error sending your message. Please try again or contact us directly.');
+      const msg = error instanceof Error ? error.message : 'There was an error sending your message.';
+      alert(msg);
     } finally {
       setIsSubmitting(false);
     }
@@ -139,7 +135,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="Contact"
         title="Let's build"
@@ -150,13 +146,15 @@ const Contact = () => {
       {/* Success Message */}
       {showSuccess && (
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center"
+          className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-emerald-500/90 text-white px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 max-w-md"
         >
-          <CheckCircleIcon className="h-5 w-5 mr-2" />
-          Thank you for your message! We'll get back to you soon.
+          <CheckCircleIcon className="h-6 w-6 shrink-0" />
+          <div>
+            <p className="font-medium">Message sent successfully!</p>
+            {submitNote && <p className="text-sm text-emerald-100 mt-1">{submitNote}</p>}
+          </div>
         </motion.div>
       )}
 

@@ -82,4 +82,6 @@ export async function getRelatedProducts(
     .slice(0, limit);
 }
 
-export { mapApiToDetail };
+export function getDemoProducts(): ProductDetail[] {
+  return [...STATIC_PRODUCTS];
+}

@@ -12,7 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 import PageHero from '../components/premium/PageHero';
 import SectionHeader from '../components/premium/SectionHeader';
-import { loadAllProducts } from '../lib/products';
+import { loadAllProducts, getDemoProducts } from '../lib/products';
 import type { ProductDetail } from '../types/product';
 
 const CATEGORY_ICONS: Record<string, ReactNode> = {
@@ -31,39 +31,30 @@ function statusClass(status: string) {
 }
 
 export default function Products() {
-  const [products, setProducts] = useState<ProductDetail[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<ProductDetail[]>(getDemoProducts());
 
   useEffect(() => {
     loadAllProducts()
       .then(setProducts)
-      .catch(() => setProducts([]))
-      .finally(() => setLoading(false));
+      .catch(() => {
+        /* demo products already visible */
+      });
   }, []);
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       <PageHero
         badge="Solutions"
         title="Industry platforms"
         highlight="built to scale"
         description="Construction ERP, Dental systems, School ERP, and enterprise software — managed live from our ERP and shipped to production."
       >
-        {!loading && (
-          <p className="mt-4 text-sm text-indigo-400 font-medium">{products.length} solutions available</p>
-        )}
+        <p className="mt-4 text-sm text-indigo-400 font-medium">{products.length} solutions available</p>
       </PageHero>
 
       <section className="section-pad pt-0">
         <div className="container-premium">
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="card-premium h-80 animate-pulse bg-white/5" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {products.map((product, index) => (
                 <motion.article
                   key={product.slug}
@@ -140,7 +131,6 @@ export default function Products() {
                 </motion.article>
               ))}
             </div>
-          )}
 
           <div className="mt-20">
             <SectionHeader

@@ -106,7 +106,7 @@ const CustomSoftware = () => {
   ];
 
   return (
-    <div className="bg-[#050508] min-h-screen">
+    <div className="min-h-screen section-surface-soft">
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden mesh-bg border-b border-white/8">
         <div className="container-premium">
@@ -192,7 +192,7 @@ const CustomSoftware = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -280,7 +280,7 @@ const CustomSoftware = () => {
       </section>
 
       {/* Development Process Section */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -325,7 +325,7 @@ const CustomSoftware = () => {
 
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-[#08080e]">
+      <section className="py-20 section-surface">
         <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
