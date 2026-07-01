@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { LegalPageLayout } from '../components/premium/ContentPageShell';
 
 const TermsOfService = () => {
   const sections = [
@@ -113,175 +114,108 @@ const TermsOfService = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-            >
-              Terms of Service
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-gray-600 mb-8"
-            >
-              Please read these terms carefully before using our services.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-sm text-gray-500"
-            >
-              Last updated: January 1, 2024
-            </motion.div>
-          </div>
+    <LegalPageLayout
+      title="Terms of Service"
+      description="Please read these terms carefully before using our services."
+      updated="January 1, 2024"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-section space-y-4"
+      >
+        <p>
+          These Terms of Service (&quot;Terms&quot;) govern your use of ArionexTech&apos;s website, services, and products.
+          These Terms constitute a legally binding agreement between you and ArionexTech Software Private Limited
+          (&quot;ArionexTech,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
+        </p>
+        <p>
+          Please read these Terms carefully before accessing or using our services. By accessing or using any part of our services,
+          you agree to be bound by these Terms. If you disagree with any part of these terms, then you may not access our services.
+        </p>
+      </motion.div>
+
+      {sections.map((section, index) => (
+        <motion.div
+          key={section.title}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.05 }}
+          className="legal-section space-y-4"
+        >
+          <h2>
+            {index + 1}. {section.title}
+          </h2>
+          {section.content.map((item) => (
+            <p key={item.slice(0, 48)}>{item}</p>
+          ))}
+        </motion.div>
+      ))}
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-section space-y-4"
+      >
+        <h2>12. Governing Law and Dispute Resolution</h2>
+        <p>
+          These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.
+        </p>
+        <p>
+          Any disputes arising from or relating to these Terms or our services shall be resolved through binding arbitration in Jabalpur, Madhya Pradesh, India, in accordance with the Arbitration and Conciliation Act, 2015.
+        </p>
+        <p>
+          You agree to submit to the personal jurisdiction of the courts located in Jabalpur, Madhya Pradesh, India for any actions not subject to arbitration.
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-section space-y-4"
+      >
+        <h2>13. Changes to Terms</h2>
+        <p>
+          We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days&apos; notice prior to any new terms taking effect.
+        </p>
+        <p>
+          What constitutes a material change will be determined at our sole discretion. By continuing to access or use our services after any revisions become effective, you agree to be bound by the revised terms.
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-section"
+      >
+        <h2>14. Contact Information</h2>
+        <div className="legal-contact-box mt-4 space-y-2">
+          <p>If you have any questions about these Terms of Service, please contact us:</p>
+          <p><strong>Email:</strong> legal@arionextech.com</p>
+          <p><strong>Address:</strong> 43A, Vijay Nagar, Jabalpur, MP 482002, India</p>
+          <p><strong>Phone:</strong> +91 88170 88544</p>
         </div>
-      </section>
+      </motion.div>
 
-      {/* Terms Content */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            {/* Introduction */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-600 leading-relaxed">
-                  These Terms of Service ("Terms") govern your use of ArionexTech's website, services, and products. 
-                  These Terms constitute a legally binding agreement between you and ArionexTech Software Private Limited 
-                  ("ArionexTech," "we," "us," or "our").
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  Please read these Terms carefully before accessing or using our services. By accessing or using any part of our services, 
-                  you agree to be bound by these Terms. If you disagree with any part of these terms, then you may not access our services.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Terms Sections */}
-            {sections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="mb-12"
-              >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  {index + 1}. {section.title}
-                </h2>
-                <div className="space-y-4">
-                  {section.content.map((item, itemIndex) => (
-                    <p key={itemIndex} className="text-gray-600 leading-relaxed">
-                      {item}
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Additional Legal Provisions */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                12. Governing Law and Dispute Resolution
-              </h2>
-              <div className="space-y-4">
-                <p className="text-gray-600 leading-relaxed">
-                  These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  Any disputes arising from or relating to these Terms or our services shall be resolved through binding arbitration in Jabalpur, Madhya Pradesh, India, in accordance with the Arbitration and Conciliation Act, 2015.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  You agree to submit to the personal jurisdiction of the courts located in Jabalpur, Madhya Pradesh, India for any actions not subject to arbitration.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                13. Changes to Terms
-              </h2>
-              <div className="space-y-4">
-                <p className="text-gray-600 leading-relaxed">
-                  We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  What constitutes a material change will be determined at our sole discretion. By continuing to access or use our services after any revisions become effective, you agree to be bound by the revised terms.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                14. Contact Information
-              </h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  If you have any questions about these Terms of Service, please contact us:
-                </p>
-                <div className="space-y-2 text-gray-600">
-                  <p><strong>Email:</strong> legal@arionextech.com</p>
-                  <p><strong>Address:</strong> 123 Tech Street, Jabalpur, MP 482001, India</p>
-                  <p><strong>Phone:</strong> +91 (761) 123-4567</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Acknowledgment */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-blue-50 border border-blue-200 rounded-lg p-6"
-            >
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                Acknowledgment
-              </h3>
-              <p className="text-blue-800">
-                By using our services, you acknowledge that you have read these Terms of Service, understood them, 
-                and agree to be bound by them. If you are entering into these Terms on behalf of a company or other legal entity, 
-                you represent that you have the authority to bind such entity to these Terms.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-    </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-callout"
+      >
+        <h3>Acknowledgment</h3>
+        <p className="mt-2">
+          By using our services, you acknowledge that you have read these Terms of Service, understood them,
+          and agree to be bound by them. If you are entering into these Terms on behalf of a company or other legal entity,
+          you represent that you have the authority to bind such entity to these Terms.
+        </p>
+      </motion.div>
+    </LegalPageLayout>
   );
 };
 

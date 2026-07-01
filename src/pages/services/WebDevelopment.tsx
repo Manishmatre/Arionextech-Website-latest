@@ -61,55 +61,6 @@ const WebDevelopment = () => {
     }
   ];
 
-  const packages = [
-    {
-      name: 'Starter',
-      price: '₹25,000',
-      duration: '2-3 weeks',
-      description: 'Perfect for small businesses and startups',
-      features: [
-        'Up to 5 pages',
-        'Responsive design',
-        'Contact form',
-        'Basic SEO',
-        '3 months support',
-        'SSL certificate'
-      ],
-      popular: false
-    },
-    {
-      name: 'Professional',
-      price: '₹50,000',
-      duration: '4-6 weeks',
-      description: 'Ideal for growing businesses',
-      features: [
-        'Up to 15 pages',
-        'Custom design',
-        'CMS integration',
-        'Advanced SEO',
-        'Payment gateway',
-        '6 months support',
-        'Performance optimization'
-      ],
-      popular: true
-    },
-    {
-      name: 'Enterprise',
-      price: '₹1,00,000+',
-      duration: '8-12 weeks',
-      description: 'For large-scale applications',
-      features: [
-        'Unlimited pages',
-        'Custom functionality',
-        'Database integration',
-        'User management',
-        'API development',
-        '12 months support',
-        'Dedicated project manager'
-      ],
-      popular: false
-    }
-  ];
 
   const process = [
     {
@@ -156,10 +107,10 @@ const WebDevelopment = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20">
+    <div className="bg-[#050508] min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-br from-primary/5 to-blue-50">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden mesh-bg border-b border-white/8">
+        <div className="container-premium">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -171,10 +122,10 @@ const WebDevelopment = () => {
                 <CodeBracketIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               </div>
               <div className="text-center sm:text-left">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                   Web Development
                 </h1>
-                <p className="text-base sm:text-lg text-gray-600 mt-1">Custom websites & web applications</p>
+                <p className="text-base sm:text-lg text-slate-400 mt-1">Custom websites & web applications</p>
               </div>
             </motion.div>
             
@@ -182,7 +133,7 @@ const WebDevelopment = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0 leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0 leading-relaxed"
             >
               Build powerful, scalable web applications that drive business growth. From simple websites to complex enterprise solutions.
             </motion.p>
@@ -208,7 +159,7 @@ const WebDevelopment = () => {
 
       {/* Features Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -216,10 +167,10 @@ const WebDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What Makes Our <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Web Development</span> Special?
+            <h2 className="section-heading">
+              What Makes Our <span className="highlight">Web Development</span> Special?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               We combine cutting-edge technology with proven methodologies to deliver exceptional results.
             </p>
           </motion.div>
@@ -232,13 +183,13 @@ const WebDevelopment = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+                <p className="text-slate-400">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -246,8 +197,8 @@ const WebDevelopment = () => {
       </section>
 
       {/* Technologies Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -255,10 +206,10 @@ const WebDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Technologies</span> We Use
+            <h2 className="section-heading">
+              <span className="highlight">Technologies</span> We Use
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               We work with the latest and most reliable technologies to ensure your project's success.
             </p>
           </motion.div>
@@ -271,11 +222,11 @@ const WebDevelopment = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-all duration-300"
+                className="card-premium p-6 text-center hover:shadow-lg transition-all duration-300"
               >
                 <div className="text-3xl mb-3">{tech.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-1">{tech.name}</h3>
-                <p className="text-sm text-gray-500">{tech.category}</p>
+                <h3 className="font-semibold text-white mb-1">{tech.name}</h3>
+                <p className="text-sm text-slate-500">{tech.category}</p>
               </motion.div>
             ))}
           </div>
@@ -284,7 +235,7 @@ const WebDevelopment = () => {
 
       {/* Process Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -292,10 +243,10 @@ const WebDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Development</span> Process
+            <h2 className="section-heading">
+              Our <span className="highlight">Development</span> Process
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               A proven methodology that ensures quality delivery and client satisfaction.
             </p>
           </motion.div>
@@ -313,8 +264,8 @@ const WebDevelopment = () => {
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                   {step.step}
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-900">{step.title}</h3>
-                <p className="text-gray-600 text-sm mb-3">{step.description}</p>
+                <h3 className="text-lg font-semibold mb-2 text-white">{step.title}</h3>
+                <p className="text-slate-400 text-sm mb-3">{step.description}</p>
                 <div className="inline-flex items-center text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
                   <ClockIcon className="h-3 w-3 mr-1" />
                   {step.duration}
@@ -325,73 +276,10 @@ const WebDevelopment = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Choose Your <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Package</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Flexible pricing options to suit businesses of all sizes.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {packages.map((pkg, index) => (
-              <motion.div
-                key={pkg.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 ${
-                  pkg.popular ? 'ring-2 ring-primary ring-opacity-20 transform scale-105' : ''
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="bg-primary text-white text-sm font-medium px-3 py-1 rounded-full text-center mb-4">
-                    Most Popular
-                  </div>
-                )}
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-4xl font-bold text-primary mb-2">{pkg.price}</div>
-                  <p className="text-gray-600 text-sm mb-2">{pkg.description}</p>
-                  <div className="flex items-center justify-center text-sm text-gray-500">
-                    <ClockIcon className="h-4 w-4 mr-1" />
-                    {pkg.duration}
-                  </div>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm">
-                      <CheckCircleIcon className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/contact"
-                  className={`btn w-full ${pkg.popular ? 'btn-primary' : 'btn-outline'}`}
-                >
-                  Get Started
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -399,8 +287,8 @@ const WebDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What Our <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Clients</span> Say
+            <h2 className="section-heading">
+              What Our <span className="highlight">Clients</span> Say
             </h2>
           </motion.div>
 
@@ -412,21 +300,21 @@ const WebDevelopment = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8"
+                className="card-premium p-8"
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <StarIcon key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+                <p className="text-slate-400 mb-6 italic">"{testimonial.text}"</p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/40 rounded-full flex items-center justify-center mr-4">
                     <span className="text-primary font-semibold">{testimonial.image}</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.company}</p>
+                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                    <p className="text-sm text-slate-400">{testimonial.company}</p>
                   </div>
                 </div>
               </motion.div>
@@ -436,8 +324,8 @@ const WebDevelopment = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 cta-section text-white">
+        <div className="container-premium text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -445,13 +333,13 @@ const WebDevelopment = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Build Your <span className="bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Dream Website</span>?
+              Ready to Build Your <span className="text-gradient inline-block pb-1">Dream Website</span>?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Get a free consultation and detailed project proposal within 24 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-flex items-center justify-center">
+              <Link to="/contact" className="btn btn-ghost inline-flex items-center justify-center">
                 <PhoneIcon className="h-4 w-4 mr-2" />
                 Start Your Project
               </Link>

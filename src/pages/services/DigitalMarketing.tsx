@@ -61,56 +61,6 @@ const DigitalMarketing = () => {
     }
   ];
 
-  const packages = [
-    {
-      name: 'Marketing Starter',
-      price: '₹25,000/month',
-      duration: 'Monthly',
-      description: 'Essential digital marketing for small businesses',
-      features: [
-        'Google Ads management',
-        'Facebook & Instagram ads',
-        'Basic social media',
-        'Monthly reporting',
-        'Landing page optimization',
-        '3 months minimum'
-      ],
-      popular: false
-    },
-    {
-      name: 'Marketing Professional',
-      price: '₹50,000/month',
-      duration: 'Monthly',
-      description: 'Comprehensive marketing strategy',
-      features: [
-        'Multi-platform PPC',
-        'Advanced social media',
-        'Email marketing',
-        'Content creation',
-        'A/B testing',
-        'Bi-weekly reporting',
-        'Conversion tracking'
-      ],
-      popular: true
-    },
-    {
-      name: 'Marketing Enterprise',
-      price: '₹1,00,000+/month',
-      duration: 'Monthly',
-      description: 'Full-scale marketing automation',
-      features: [
-        'Omnichannel campaigns',
-        'Marketing automation',
-        'Advanced analytics',
-        'Custom content',
-        'Lead nurturing',
-        'Weekly reporting',
-        'Dedicated manager',
-        'Custom integrations'
-      ],
-      popular: false
-    }
-  ];
 
   const services = [
     {
@@ -157,10 +107,10 @@ const DigitalMarketing = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20">
+    <div className="bg-[#050508] min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-primary/5 to-blue-50">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden mesh-bg border-b border-white/8">
+        <div className="container-premium">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -172,8 +122,8 @@ const DigitalMarketing = () => {
                 <MegaphoneIcon className="h-8 w-8 text-primary" />
               </div>
               <div className="text-left">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Digital Marketing</h1>
-                <p className="text-lg text-gray-600">Growth-driven marketing campaigns</p>
+                <h1 className="text-4xl md:text-5xl font-bold text-white">Digital Marketing</h1>
+                <p className="text-lg text-slate-400">Growth-driven marketing campaigns</p>
               </div>
             </motion.div>
             
@@ -181,7 +131,7 @@ const DigitalMarketing = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
+              className="text-xl text-slate-400 max-w-3xl mx-auto mb-8"
             >
               Drive business growth with data-driven digital marketing strategies across all major platforms and channels.
             </motion.p>
@@ -207,7 +157,7 @@ const DigitalMarketing = () => {
 
       {/* Platforms Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -215,10 +165,10 @@ const DigitalMarketing = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               Marketing Platforms We Master
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Comprehensive marketing across all major digital platforms.
             </p>
           </motion.div>
@@ -231,11 +181,11 @@ const DigitalMarketing = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-all duration-300 border border-gray-100"
+                className="card-premium p-6 text-center hover:shadow-lg transition-all duration-300 border border-white/10"
               >
                 <div className="text-3xl mb-3">{platform.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-1">{platform.name}</h3>
-                <p className="text-sm text-gray-500">{platform.category}</p>
+                <h3 className="font-semibold text-white mb-1">{platform.name}</h3>
+                <p className="text-sm text-slate-500">{platform.category}</p>
               </motion.div>
             ))}
           </div>
@@ -243,8 +193,8 @@ const DigitalMarketing = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -252,10 +202,10 @@ const DigitalMarketing = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               Marketing Services We Provide
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Complete digital marketing solutions to grow your business online.
             </p>
           </motion.div>
@@ -268,13 +218,13 @@ const DigitalMarketing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+                <p className="text-slate-400">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -283,7 +233,7 @@ const DigitalMarketing = () => {
 
       {/* Services Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -291,10 +241,10 @@ const DigitalMarketing = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               Specialized Marketing Services
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Targeted marketing solutions for different business objectives.
             </p>
           </motion.div>
@@ -307,18 +257,18 @@ const DigitalMarketing = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-start mb-6">
                   <div className="text-4xl mr-4">{service.icon}</div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2 text-gray-900">{service.title}</h3>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 text-white">{service.title}</h3>
+                    <p className="text-slate-400 mb-4">{service.description}</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {service.benefits.map((benefit, benefitIndex) => (
-                    <div key={benefitIndex} className="flex items-center text-sm text-gray-600">
+                    <div key={benefitIndex} className="flex items-center text-sm text-slate-400">
                       <CheckCircleIcon className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
                       {benefit}
                     </div>
@@ -330,73 +280,10 @@ const DigitalMarketing = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Marketing Packages
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose the marketing package that fits your business goals.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {packages.map((pkg, index) => (
-              <motion.div
-                key={pkg.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 ${
-                  pkg.popular ? 'ring-2 ring-primary ring-opacity-20 transform scale-105' : ''
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="bg-primary text-white text-sm font-medium px-3 py-1 rounded-full text-center mb-4">
-                    Most Popular
-                  </div>
-                )}
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-4xl font-bold text-primary mb-2">{pkg.price}</div>
-                  <p className="text-gray-600 text-sm mb-2">{pkg.description}</p>
-                  <div className="flex items-center justify-center text-sm text-gray-500">
-                    <ClockIcon className="h-4 w-4 mr-1" />
-                    {pkg.duration}
-                  </div>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm">
-                      <CheckCircleIcon className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/contact"
-                  className={`btn w-full ${pkg.popular ? 'btn-primary' : 'btn-outline'}`}
-                >
-                  Get Started
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -404,7 +291,7 @@ const DigitalMarketing = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               Marketing Success Stories
             </h2>
           </motion.div>
@@ -417,21 +304,21 @@ const DigitalMarketing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8"
+                className="card-premium p-8"
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <StarIcon key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+                <p className="text-slate-400 mb-6 italic">"{testimonial.text}"</p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/40 rounded-full flex items-center justify-center mr-4">
                     <span className="text-primary font-semibold">{testimonial.image}</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.company}</p>
+                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                    <p className="text-sm text-slate-400">{testimonial.company}</p>
                   </div>
                 </div>
               </motion.div>
@@ -441,8 +328,8 @@ const DigitalMarketing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 cta-section text-white">
+        <div className="container-premium text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -456,7 +343,7 @@ const DigitalMarketing = () => {
               Get a free marketing consultation and custom strategy for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-flex items-center justify-center">
+              <Link to="/contact" className="btn btn-ghost inline-flex items-center justify-center">
                 <PhoneIcon className="h-4 w-4 mr-2" />
                 Start Marketing Campaign
               </Link>

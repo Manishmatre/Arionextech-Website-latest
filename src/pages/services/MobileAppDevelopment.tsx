@@ -56,56 +56,6 @@ const MobileAppDevelopment = () => {
     }
   ];
 
-  const packages = [
-    {
-      name: 'Basic App',
-      price: '₹75,000',
-      duration: '6-8 weeks',
-      description: 'Simple app with core functionality',
-      features: [
-        'Single platform (iOS or Android)',
-        'Up to 10 screens',
-        'Basic UI/UX design',
-        'Local data storage',
-        'Basic testing',
-        '3 months support'
-      ],
-      popular: false
-    },
-    {
-      name: 'Professional App',
-      price: '₹1,50,000',
-      duration: '10-12 weeks',
-      description: 'Feature-rich app for business needs',
-      features: [
-        'Cross-platform (iOS & Android)',
-        'Up to 25 screens',
-        'Custom UI/UX design',
-        'Backend integration',
-        'Push notifications',
-        'App store submission',
-        '6 months support'
-      ],
-      popular: true
-    },
-    {
-      name: 'Enterprise App',
-      price: '₹3,00,000+',
-      duration: '16-20 weeks',
-      description: 'Complex enterprise-grade solution',
-      features: [
-        'Multiple platforms',
-        'Unlimited screens',
-        'Advanced features',
-        'Real-time functionality',
-        'Admin dashboard',
-        'Analytics integration',
-        '12 months support',
-        'Dedicated team'
-      ],
-      popular: false
-    }
-  ];
 
   const appTypes = [
     {
@@ -152,10 +102,10 @@ const MobileAppDevelopment = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20">
+    <div className="bg-[#050508] min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-primary/5 to-blue-50">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden mesh-bg border-b border-white/8">
+        <div className="container-premium">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -167,8 +117,8 @@ const MobileAppDevelopment = () => {
                 <DevicePhoneMobileIcon className="h-8 w-8 text-primary" />
               </div>
               <div className="text-left">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Mobile App Development</h1>
-                <p className="text-lg text-gray-600">iOS & Android applications</p>
+                <h1 className="text-4xl md:text-5xl font-bold text-white">Mobile App Development</h1>
+                <p className="text-lg text-slate-400">iOS & Android applications</p>
               </div>
             </motion.div>
             
@@ -176,7 +126,7 @@ const MobileAppDevelopment = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
+              className="text-xl text-slate-400 max-w-3xl mx-auto mb-8"
             >
               Create powerful mobile applications that engage users and drive business growth across iOS and Android platforms.
             </motion.p>
@@ -202,7 +152,7 @@ const MobileAppDevelopment = () => {
 
       {/* Platforms Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -210,10 +160,10 @@ const MobileAppDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               Platforms We Support
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               We develop for all major mobile platforms using the latest technologies.
             </p>
           </motion.div>
@@ -226,11 +176,11 @@ const MobileAppDevelopment = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-all duration-300 border border-gray-100"
+                className="card-premium p-6 text-center hover:shadow-lg transition-all duration-300 border border-white/10"
               >
                 <div className="text-4xl mb-4">{platform.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-2">{platform.name}</h3>
-                <p className="text-sm text-gray-600">{platform.description}</p>
+                <h3 className="font-semibold text-white mb-2">{platform.name}</h3>
+                <p className="text-sm text-slate-400">{platform.description}</p>
               </motion.div>
             ))}
           </div>
@@ -238,8 +188,8 @@ const MobileAppDevelopment = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -247,10 +197,10 @@ const MobileAppDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               App Features We Deliver
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Comprehensive mobile app features that enhance user experience and business value.
             </p>
           </motion.div>
@@ -263,13 +213,13 @@ const MobileAppDevelopment = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+                <p className="text-slate-400">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -278,7 +228,7 @@ const MobileAppDevelopment = () => {
 
       {/* App Types Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -286,10 +236,10 @@ const MobileAppDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               Types of Apps We Build
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               From simple utility apps to complex enterprise solutions, we cover all categories.
             </p>
           </motion.div>
@@ -302,18 +252,18 @@ const MobileAppDevelopment = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-start mb-6">
                   <div className="text-4xl mr-4">{type.icon}</div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2 text-gray-900">{type.title}</h3>
-                    <p className="text-gray-600 mb-4">{type.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 text-white">{type.title}</h3>
+                    <p className="text-slate-400 mb-4">{type.description}</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {type.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center text-sm text-gray-600">
+                    <div key={featureIndex} className="flex items-center text-sm text-slate-400">
                       <CheckCircleIcon className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
                       {feature}
                     </div>
@@ -325,73 +275,10 @@ const MobileAppDevelopment = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              App Development Packages
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose the package that best fits your app requirements and budget.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {packages.map((pkg, index) => (
-              <motion.div
-                key={pkg.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 ${
-                  pkg.popular ? 'ring-2 ring-primary ring-opacity-20 transform scale-105' : ''
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="bg-primary text-white text-sm font-medium px-3 py-1 rounded-full text-center mb-4">
-                    Most Popular
-                  </div>
-                )}
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-4xl font-bold text-primary mb-2">{pkg.price}</div>
-                  <p className="text-gray-600 text-sm mb-2">{pkg.description}</p>
-                  <div className="flex items-center justify-center text-sm text-gray-500">
-                    <ClockIcon className="h-4 w-4 mr-1" />
-                    {pkg.duration}
-                  </div>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm">
-                      <CheckCircleIcon className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/contact"
-                  className={`btn w-full ${pkg.popular ? 'btn-primary' : 'btn-outline'}`}
-                >
-                  Get Started
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -399,7 +286,7 @@ const MobileAppDevelopment = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-heading">
               Success Stories
             </h2>
           </motion.div>
@@ -412,21 +299,21 @@ const MobileAppDevelopment = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8"
+                className="card-premium p-8"
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <StarIcon key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+                <p className="text-slate-400 mb-6 italic">"{testimonial.text}"</p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/40 rounded-full flex items-center justify-center mr-4">
                     <span className="text-primary font-semibold">{testimonial.image}</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.company}</p>
+                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                    <p className="text-sm text-slate-400">{testimonial.company}</p>
                   </div>
                 </div>
               </motion.div>
@@ -436,8 +323,8 @@ const MobileAppDevelopment = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 cta-section text-white">
+        <div className="container-premium text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -451,7 +338,7 @@ const MobileAppDevelopment = () => {
               Get a free app consultation and detailed development roadmap.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-flex items-center justify-center">
+              <Link to="/contact" className="btn btn-ghost inline-flex items-center justify-center">
                 <PhoneIcon className="h-4 w-4 mr-2" />
                 Start Your App Project
               </Link>

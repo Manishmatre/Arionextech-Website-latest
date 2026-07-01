@@ -3,16 +3,16 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#050508] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 text-center">
         <div>
-          <h2 className="mt-6 text-9xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-9xl font-extrabold text-white">
             404
           </h2>
-          <h3 className="mt-2 text-3xl font-extrabold text-gray-900">
+          <h3 className="mt-2 text-3xl font-extrabold text-white">
             Page not found
           </h3>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-slate-400">
             Sorry, we couldn't find the page you're looking for.
           </p>
         </div>

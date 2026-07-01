@@ -1,222 +1,163 @@
 import { motion } from 'framer-motion';
-import { 
-  ShoppingCartIcon, 
-  AcademicCapIcon, 
+import { useEffect, useState, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  AcademicCapIcon,
+  ArrowRightIcon,
+  ArrowTopRightOnSquareIcon,
   BuildingOfficeIcon,
-  ChartBarIcon,
   CheckCircleIcon,
-  ArrowTopRightOnSquareIcon, 
-  CloudArrowUpIcon, 
-  ShieldCheckIcon,
-  HeartIcon
+  HeartIcon,
+  WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline';
+import PageHero from '../components/premium/PageHero';
+import SectionHeader from '../components/premium/SectionHeader';
+import { loadAllProducts } from '../lib/products';
+import type { ProductDetail } from '../types/product';
 
-const Products = () => {
-  const products = [
-    {
-      name: 'ArionexCRM',
-      description: 'Complete customer relationship management solution designed for modern businesses. Manage leads, customers, and sales pipeline efficiently.',
-      status: 'Under Development',
-      price: 'Coming Soon',
-      features: ['Lead Management', 'Sales Pipeline', 'Customer Analytics', 'Email Integration', 'Mobile App'],
-      icon: <BuildingOfficeIcon className="h-8 w-8 text-primary" />,
-      category: 'Business Management'
-    },
-    {
-      name: 'DentalOs.Ai',
-      description: 'AI-powered dental clinic management software that streamlines patient care, appointments, and practice operations with intelligent automation.',
-      status: 'Under Development',
-      price: 'Coming Soon',
-      features: ['Patient Management', 'AI Diagnostics', 'Appointment Scheduling', 'Treatment Planning', 'Billing & Insurance'],
-      icon: <HeartIcon className="h-8 w-8 text-primary" />,
-      category: 'Healthcare'
-    },
-    {
-      name: 'School Management Software',
-      description: 'Comprehensive school management system that handles student enrollment, academic records, staff management, and administrative operations.',
-      status: 'Under Development',
-      price: 'Coming Soon',
-      features: ['Student Enrollment', 'Academic Records', 'Staff Management', 'Fee Management', 'Attendance Tracking'],
-      icon: <AcademicCapIcon className="h-8 w-8 text-primary" />,
-      category: 'Education'
-    },
-    // {
-    //   name: 'EduTrack Pro',
-    //   description: 'Comprehensive student information system for educational institutions. Streamline admissions, academics, and administration.',
-    //   status: 'Beta',
-    //   price: '₹1,999/month',
-    //   features: ['Student Management', 'Grade Tracking', 'Attendance System', 'Parent Portal', 'Fee Management'],
-    //   icon: <AcademicCapIcon className="h-8 w-8 text-primary" />,
-    //   category: 'Education'
-    // },
-    // {
-    //   name: 'RetailFlow',
-    //   description: 'E-commerce and inventory management platform for retail businesses. Manage products, orders, and customers seamlessly.',
-    //   status: 'Coming Soon',
-    //   price: '₹3,499/month',
-    //   features: ['Inventory Management', 'Order Processing', 'Customer Analytics', 'Multi-channel Sales', 'Payment Gateway'],
-    //   icon: <ShoppingCartIcon className="h-8 w-8 text-primary" />,
-    //   category: 'E-commerce'
-    // },
-    // {
-    //   name: 'CloudSync',
-    //   description: 'Secure cloud storage and file synchronization solution for businesses. Access your files anywhere, anytime.',
-    //   status: 'Live',
-    //   price: '₹999/month',
-    //   features: ['File Sync', 'Team Collaboration', 'Version Control', 'Security Encryption', 'API Access'],
-    //   icon: <CloudArrowUpIcon className="h-8 w-8 text-primary" />,
-    //   category: 'Cloud Services'
-    // },
-    // {
-    //   name: 'DataViz Analytics',
-    //   description: 'Business intelligence platform that transforms data into actionable insights with beautiful visualizations.',
-    //   status: 'Beta',
-    //   price: '₹4,999/month',
-    //   features: ['Data Visualization', 'Custom Reports', 'Real-time Analytics', 'Dashboard Builder', 'AI Insights'],
-    //   icon: <ChartBarIcon className="h-8 w-8 text-primary" />,
-    //   category: 'Analytics'
-    // },
-    // {
-    //   name: 'SecureVault',
-    //   description: 'Enterprise-grade security solution with advanced threat detection and data protection capabilities.',
-    //   status: 'Coming Soon',
-    //   price: '₹5,999/month',
-    //   features: ['Threat Detection', 'Data Encryption', 'Access Control', 'Audit Logs', '24/7 Monitoring'],
-    //   icon: <ShieldCheckIcon className="h-8 w-8 text-primary" />,
-    //   category: 'Security'
-    // },
-  ];
+const CATEGORY_ICONS: Record<string, ReactNode> = {
+  Construction: <WrenchScrewdriverIcon className="h-6 w-6" />,
+  Dental: <HeartIcon className="h-6 w-6" />,
+  Hospital: <HeartIcon className="h-6 w-6" />,
+  School: <AcademicCapIcon className="h-6 w-6" />,
+  ERP: <BuildingOfficeIcon className="h-6 w-6" />,
+};
+
+function statusClass(status: string) {
+  if (status === 'Active' || status === 'Live') return 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30';
+  if (status === 'Beta') return 'text-sky-400 bg-sky-500/15 border-sky-500/30';
+  if (status === 'Coming Soon') return 'text-amber-400 bg-amber-500/15 border-amber-500/30';
+  return 'text-slate-400 bg-white/5 border-white/10';
+}
+
+export default function Products() {
+  const [products, setProducts] = useState<ProductDetail[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadAllProducts()
+      .then(setProducts)
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 overflow-hidden">
-        {/* Fallback background pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-        {/* Animated elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <ShoppingCartIcon className="h-4 w-4 mr-2" />
-              Our Solutions
+    <div className="bg-[#050508] min-h-screen">
+      <PageHero
+        badge="Solutions"
+        title="Industry platforms"
+        highlight="built to scale"
+        description="Construction ERP, Dental systems, School ERP, and enterprise software — managed live from our ERP and shipped to production."
+      >
+        {!loading && (
+          <p className="mt-4 text-sm text-indigo-400 font-medium">{products.length} solutions available</p>
+        )}
+      </PageHero>
+
+      <section className="section-pad pt-0">
+        <div className="container-premium">
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="card-premium h-80 animate-pulse bg-white/5" />
+              ))}
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Our <span className="bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Products</span>
-            </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Innovative software solutions designed to transform your business operations. Ready-to-use products that drive growth and efficiency.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {products.map((product, index) => (
+                <motion.article
+                  key={product.slug}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.06 }}
+                  className="card-premium overflow-hidden flex flex-col group"
+                >
+                  <Link to={`/products/${product.slug}`} className="block flex-grow flex flex-col">
+                    {product.heroImage && (
+                      <div className="h-40 overflow-hidden">
+                        <img
+                          src={product.heroImage}
+                          alt={product.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6 md:p-8 flex flex-col flex-grow">
+                      <div className="flex items-start justify-between mb-5">
+                        <div className="w-12 h-12 rounded-xl bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center text-indigo-400">
+                          {CATEGORY_ICONS[product.category] || <BuildingOfficeIcon className="h-6 w-6" />}
+                        </div>
+                        <span className={`text-[10px] px-2.5 py-1 rounded-full border font-semibold uppercase tracking-wider ${statusClass(product.status)}`}>
+                          {product.status}
+                        </span>
+                      </div>
 
-      {/* Products Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-              <motion.div
-                key={product.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={index < 3 ? { opacity: 1, y: 0 } : undefined}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index < 3 ? index * 0.1 : 0 }}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
-              >
-                <div className="absolute top-4 right-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    product.status === 'Live' 
-                      ? 'bg-green-100 text-green-800' 
-                      : product.status === 'Beta'
-                      ? 'bg-blue-100 text-blue-800'
-                      : product.status === 'Under Development'
-                      ? 'bg-orange-100 text-orange-800'
-                      : 'bg-yellow-100 text-yellow-800'
-                  }`}>
-                    {product.status}
-                  </span>
-                </div>
-                
-                <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6 group-hover:bg-primary/20 transition-colors">
-                  {product.icon}
-                </div>
-                
-                <div className="mb-2">
-                  <span className="text-xs font-medium text-primary uppercase tracking-wide">{product.category}</span>
-                </div>
-                
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{product.name}</h3>
-                <p className="text-gray-600 mb-4">{product.description}</p>
-                
-                <div className="mb-4">
-                  <div className="text-2xl font-bold text-primary mb-1">{product.price}</div>
-                  <div className="text-sm text-gray-500">Starting price</div>
-                </div>
-                
-                <div className="space-y-2 mb-6">
-                  {product.features.slice(0, 4).map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-sm text-gray-700">
-                      <CheckCircleIcon className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
+                      <span className="text-xs font-semibold text-indigo-400 uppercase tracking-wider">
+                        {product.category}
+                        {product.productType && <span className="text-slate-600 ml-2">· {product.productType}</span>}
+                      </span>
+
+                      <h3 className="font-display text-xl font-bold text-white mt-2 mb-3 group-hover:text-indigo-300 transition-colors">
+                        {product.title}
+                      </h3>
+                      <p className="text-slate-400 text-sm leading-relaxed flex-grow line-clamp-3">
+                        {product.shortDescription}
+                      </p>
+
+                      <ul className="space-y-2 mb-6 mt-5">
+                        {product.features.slice(0, 4).map((feature) => (
+                          <li key={feature} className="flex items-center gap-2 text-sm text-slate-300">
+                            <CheckCircleIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <span className="text-sm font-medium text-indigo-400 flex items-center gap-1 pt-4 border-t border-white/8">
+                        View full details
+                        <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
                     </div>
-                  ))}
-                  {product.features.length > 4 && (
-                    <div className="text-sm text-gray-500">+{product.features.length - 4} more features</div>
-                  )}
-                </div>
-                
-                <div className="flex gap-2">
-                  <button className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
-                    product.status === 'Coming Soon' || product.status === 'Under Development'
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-primary text-white hover:bg-primary-dark'
-                  }`} disabled={product.status === 'Coming Soon' || product.status === 'Under Development'}>
-                    {product.status === 'Coming Soon' || product.status === 'Under Development' ? 'Notify Me' : 'Get Started'}
-                  </button>
-                  <button className="p-2 border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors">
-                    <ArrowTopRightOnSquareIcon className="w-5 h-5" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  </Link>
 
-          <div className="mt-16 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg border border-gray-200"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Have a Custom Project in Mind?</h3>
-              <p className="text-gray-600 mb-6">
-                Our team specializes in building custom software solutions tailored to your specific business needs.
-              </p>
-              <a
-                href="/contact"
-                className="btn btn-primary inline-flex items-center justify-center"
-              >
-                Request a Consultation
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </a>
-            </motion.div>
+                  <div className="px-6 md:px-8 pb-6 flex gap-3 -mt-2">
+                    <Link to="/contact" className="btn-primary flex-1 !py-2.5 text-sm justify-center">
+                      Request demo
+                    </Link>
+                    {product.demoUrl && (
+                      <a
+                        href={product.demoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-ghost !p-2.5"
+                        aria-label="Live demo"
+                      >
+                        <ArrowTopRightOnSquareIcon className="w-5 h-5" />
+                      </a>
+                    )}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-20">
+            <SectionHeader
+              badge="Custom builds"
+              title="Need something"
+              highlight="unique?"
+              description="We architect and build bespoke platforms for construction, healthcare, education, and enterprise."
+            />
+            <div className="text-center">
+              <Link to="/contact" className="btn-primary">
+                Request a consultation
+                <ArrowRightIcon className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
     </div>
   );
-};
-
-export default Products;
+}

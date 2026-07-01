@@ -15,6 +15,7 @@ import {
   BuildingOfficeIcon,
   ArrowRightIcon,
 } from '@heroicons/react/24/outline';
+import PageHero from '../components/premium/PageHero';
 
 const Careers = () => {
   const [selectedDepartment, setSelectedDepartment] = useState('All');
@@ -151,58 +152,32 @@ const Careers = () => {
     : jobOpenings.filter(job => job.department === selectedDepartment);
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 overflow-hidden">
-        {/* Fallback background pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-        {/* Animated elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <UserGroupIcon className="h-4 w-4 mr-2" />
-              Join Our Team
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Build Your <span className="bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Career</span>
-            </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Build the future of technology with us. We're looking for passionate individuals who want to make a difference.
-            </p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-wrap justify-center gap-8 text-sm text-white/80"
-            >
-              <div className="flex items-center">
-                <UserGroupIcon className="h-5 w-5 mr-2 text-blue-300" />
-                50+ Team Members
-              </div>
-              <div className="flex items-center">
-                <MapPinIcon className="h-5 w-5 mr-2 text-blue-300" />
-                Jabalpur, India
-              </div>
-              <div className="flex items-center">
-                <GlobeAltIcon className="h-5 w-5 mr-2 text-blue-300" />
-                Remote Friendly
-              </div>
-            </motion.div>
-          </motion.div>
+    <div className="bg-[#050508] min-h-screen">
+      <PageHero
+        badge="Join Our Team"
+        title="Build Your"
+        highlight="Career"
+        description="Build the future of technology with us. We're looking for passionate individuals who want to make a difference."
+      >
+        <div className="flex flex-wrap gap-8 text-sm text-slate-400 mt-8">
+          <div className="flex items-center">
+            <UserGroupIcon className="h-5 w-5 mr-2 text-indigo-400" />
+            50+ Team Members
+          </div>
+          <div className="flex items-center">
+            <MapPinIcon className="h-5 w-5 mr-2 text-indigo-400" />
+            Jabalpur, India
+          </div>
+          <div className="flex items-center">
+            <GlobeAltIcon className="h-5 w-5 mr-2 text-indigo-400" />
+            Remote Friendly
+          </div>
         </div>
-      </section>
+      </PageHero>
 
       {/* Company Culture */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -210,10 +185,10 @@ const Careers = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Culture & <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Values</span>
+            <h2 className="section-heading">
+              Our Culture & <span className="highlight">Values</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               We foster an environment where innovation thrives and every team member can grow.
             </p>
           </motion.div>
@@ -231,8 +206,8 @@ const Careers = () => {
                 <div className="w-20 h-20 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-white">{value.title}</h3>
+                <p className="text-slate-400">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -240,8 +215,8 @@ const Careers = () => {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -249,10 +224,10 @@ const Careers = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Work With <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Us?</span>
+            <h2 className="section-heading">
+              Why Work With <span className="highlight">Us?</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               We offer comprehensive benefits and perks to ensure our team members thrive.
             </p>
           </motion.div>
@@ -265,13 +240,13 @@ const Careers = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-white">{benefit.title}</h3>
+                <p className="text-slate-400">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
@@ -280,7 +255,7 @@ const Careers = () => {
 
       {/* Job Openings */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -288,10 +263,10 @@ const Careers = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Open <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Positions</span>
+            <h2 className="section-heading">
+              Open <span className="highlight">Positions</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
               Explore our current job openings and find your perfect role.
             </p>
 
@@ -304,7 +279,7 @@ const Careers = () => {
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     selectedDepartment === dept
                       ? 'bg-primary text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      : 'bg-white/5 text-slate-400 hover:bg-white/10'
                   }`}
                 >
                   {dept}
@@ -321,17 +296,17 @@ const Careers = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
                   <div className="flex-1">
                     <div className="flex items-center mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900 mr-3">{job.title}</h3>
+                      <h3 className="text-xl font-semibold text-white mr-3">{job.title}</h3>
                       <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-sm font-medium">
                         {job.department}
                       </span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-4">
                       <div className="flex items-center">
                         <MapPinIcon className="h-4 w-4 mr-1" />
                         {job.location}
@@ -349,12 +324,12 @@ const Careers = () => {
                         {job.posted}
                       </div>
                     </div>
-                    <p className="text-gray-600 mb-4">{job.description}</p>
+                    <p className="text-slate-400 mb-4">{job.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {job.requirements.map((req, reqIndex) => (
                         <span
                           key={reqIndex}
-                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                          className="bg-white/5 text-slate-300 px-3 py-1 rounded-full text-sm"
                         >
                           {req}
                         </span>
@@ -378,16 +353,16 @@ const Careers = () => {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <p className="text-gray-500 text-lg">No positions available in {selectedDepartment} department.</p>
-              <p className="text-gray-400 mt-2">Check back soon or explore other departments.</p>
+              <p className="text-slate-500 text-lg">No positions available in {selectedDepartment} department.</p>
+              <p className="text-slate-500 mt-2">Check back soon or explore other departments.</p>
             </motion.div>
           )}
         </div>
       </section>
 
       {/* Application Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -395,10 +370,10 @@ const Careers = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Hiring <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Process</span>
+            <h2 className="section-heading">
+              Our Hiring <span className="highlight">Process</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               We've designed a transparent and efficient hiring process to find the best talent.
             </p>
           </motion.div>
@@ -438,8 +413,8 @@ const Careers = () => {
                   <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                     {process.step}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">{process.title}</h3>
-                  <p className="text-gray-600 text-sm">{process.description}</p>
+                  <h3 className="text-lg font-semibold mb-2 text-white">{process.title}</h3>
+                  <p className="text-slate-400 text-sm">{process.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -448,8 +423,8 @@ const Careers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 cta-section text-white">
+        <div className="container-premium text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -463,7 +438,7 @@ const Careers = () => {
               We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn bg-white text-primary hover:bg-gray-100">
+              <button className="btn btn-ghost">
                 Send Resume
               </button>
               <button className="btn btn-outline border-white text-white hover:bg-white hover:text-primary">

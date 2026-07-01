@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PageHero from '../components/premium/PageHero';
 import { motion } from 'framer-motion';
 import { MapPinIcon, PhoneIcon, EnvelopeIcon, CheckCircleIcon, ClockIcon } from '@heroicons/react/24/outline';
 import emailjs from '@emailjs/browser';
@@ -138,35 +139,13 @@ const Contact = () => {
   ];
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 overflow-hidden">
-        {/* Fallback background pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-        {/* Animated elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <EnvelopeIcon className="h-4 w-4 mr-2" />
-              Let's Connect
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Get in <span className="bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Touch</span>
-            </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Have questions or want to discuss a project? We'd love to hear from you. Let's build something amazing together.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="bg-[#050508] min-h-screen">
+      <PageHero
+        badge="Contact"
+        title="Let's build"
+        highlight="together"
+        description="Have a project in mind? Tell us about your goals — we'll respond within 24 hours."
+      />
 
       {/* Success Message */}
       {showSuccess && (
@@ -181,26 +160,23 @@ const Contact = () => {
         </motion.div>
       )}
 
-      {/* Contact Form & Info */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Contact Form */}
+      <section className="section-pad pt-0">
+        <div className="container-premium">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-xl shadow-lg p-8"
+              className="card-premium p-8"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Send us a <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Message</span>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-6">
+                Send a <span className="text-gradient-accent">message</span>
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                
+              <form onSubmit={handleSubmit} className="dark-form space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name">
                       Your Name <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -210,13 +186,13 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className={`w-full px-4 py-3 rounded-lg border ${errors.name ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200`}
+                      className={errors.name ? 'border-red-500' : ''}
                       placeholder="your name"
                     />
                     {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="email">
                       Email Address <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -226,14 +202,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200`}
+                      className={errors.email ? 'border-red-500' : ''}
                       placeholder="you@example.com"
                     />
                     {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="subject">
                     Subject <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -242,7 +218,6 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 bg-white"
                   >
                     <option value="">Select a subject...</option>
                     <option value="Web Development">Web Development</option>
@@ -264,21 +239,18 @@ const Contact = () => {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="number" className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone Number
-                  </label>
+                  <label htmlFor="number">Phone Number</label>
                   <input
                     type="tel"
                     id="number"
                     name="number"
                     value={formData.number}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
                     placeholder="+91 9876543210"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="message">
                     Your Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -288,7 +260,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200`}
+                    className={errors.message ? 'border-red-500' : ''}
                     placeholder="Tell us about your project..."
                   ></textarea>
                   {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
@@ -328,9 +300,9 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-8"
             >
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                  Contact <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Information</span>
+              <div className="card-premium p-8">
+                <h2 className="section-heading">
+                  Contact <span className="highlight">Information</span>
                 </h2>
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => (
@@ -339,8 +311,8 @@ const Contact = () => {
                         {item.icon}
                       </div>
                       <div className="ml-4">
-                        <h3 className="text-lg font-medium text-gray-900">{item.title}</h3>
-                        <p className="text-gray-600">{item.description}</p>
+                        <h3 className="text-lg font-medium text-white">{item.title}</h3>
+                        <p className="text-slate-400">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -348,7 +320,7 @@ const Contact = () => {
 
                 {/* Social Links */}
                 <div className="mt-8">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Follow Us</h3>
+                  <h3 className="text-lg font-medium text-white mb-4">Follow Us</h3>
                   <div className="flex space-x-4">
                     {socialLinks.map((social, index) => (
                       <a
@@ -367,7 +339,7 @@ const Contact = () => {
               </div>
 
               {/* Google Maps */}
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="card-premium overflow-hidden">
                 <div className="h-64">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.5604687153836!2d79.90224957387176!3d23.18623671020354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3981b1c5a3fe8201%3A0xb3e36a3abcb8225f!2sVijay%20Nagar%2C%20Jabalpur%2C%20Raksha%2C%20Madhya%20Pradesh%20482002!5e0!3m2!1sen!2sin!4v1757243455964!5m2!1sen!2sin"
@@ -380,10 +352,10 @@ const Contact = () => {
                     title="ArionexTech Office Location"
                   ></iframe>
                 </div>
-                <div className="p-4 bg-gray-50">
+                <div className="p-4 bg-[#08080e]">
                   <div className="flex items-center">
                     <MapPinIcon className="h-5 w-5 text-primary mr-2" />
-                    <p className="text-sm text-gray-600">43A, Vijay Nagar, Jabalpur, Raksha, Madhya Pradesh 482002</p>
+                    <p className="text-sm text-slate-400">43A, Vijay Nagar, Jabalpur, Raksha, Madhya Pradesh 482002</p>
                   </div>
                 </div>
               </div>

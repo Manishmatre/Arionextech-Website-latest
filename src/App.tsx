@@ -2,9 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
 import ScrollToTop from './components/ScrollToTop';
-import FloatingButtons from './components/FloatingButtons';
 import LocalBusinessSchema from './components/LocalBusinessSchema';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -21,26 +19,26 @@ import HelpCenter from './pages/HelpCenter';
 import Testimonials from './pages/Testimonials';
 import WebDevelopment from './pages/services/WebDevelopment';
 import MobileAppDevelopment from './pages/services/MobileAppDevelopment';
-// import CloudSolutions from './pages/services/CloudSolutions';
-// import AiMl from './pages/services/AiMl';
-// import DevOps from './pages/services/DevOps';
-// import Cybersecurity from './pages/services/Cybersecurity';
+import CloudSolutions from './pages/services/CloudSolutions';
+import AiMl from './pages/services/AiMl';
+import DevOps from './pages/services/DevOps';
+import Cybersecurity from './pages/services/Cybersecurity';
 import UiUxDesign from './pages/services/UiUxDesign';
 import SeoBacklinks from './pages/services/SeoBacklinks';
 import DigitalMarketing from './pages/services/DigitalMarketing';
 import GraphicDesign from './pages/services/GraphicDesign';
-// import StaffAugmentation from './pages/services/StaffAugmentation';
+import StaffAugmentation from './pages/services/StaffAugmentation';
 import CustomSoftware from './pages/services/CustomSoftware';
 import WordPressDevelopment from './pages/services/WordPressDevelopment';
 import Internships from './pages/Internships';
 import NotFound from './pages/NotFound';
+import ProjectDetail from './pages/ProjectDetail';
+import ProductDetailPage from './pages/ProductDetail';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <CustomCursor />
+    <div className="min-h-screen flex flex-col bg-[#050508] text-slate-200">
       <ScrollToTop />
-      <FloatingButtons />
       <Navbar />
       <LocalBusinessSchema />
       <main className="flex-grow">
@@ -52,18 +50,19 @@ function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/services/web-development" element={<WebDevelopment />} />
             <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
-            {/* <Route path="/services/cloud-solutions" element={<CloudSolutions />} /> */}
-            {/* <Route path="/services/ai-ml" element={<AiMl />} /> */}
-            {/* <Route path="/services/devops" element={<DevOps />} /> */}
-            {/* <Route path="/services/cybersecurity" element={<Cybersecurity />} /> */}
+            <Route path="/services/cloud-solutions" element={<CloudSolutions />} />
+            <Route path="/services/ai-ml" element={<AiMl />} />
+            <Route path="/services/devops" element={<DevOps />} />
+            <Route path="/services/cybersecurity" element={<Cybersecurity />} />
             <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
             <Route path="/services/seo-backlinks" element={<SeoBacklinks />} />
             <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
             <Route path="/services/graphic-design" element={<GraphicDesign />} />
-            {/* <Route path="/services/staff-augmentation" element={<StaffAugmentation />} /> */}
+            <Route path="/services/staff-augmentation" element={<StaffAugmentation />} />
             <Route path="/services/custom-software" element={<CustomSoftware />} />
             <Route path="/services/wordpress-development" element={<WordPressDevelopment />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/products/:slug" element={<ProductDetailPage />} />
             <Route path="/internships" element={<Internships />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faqs" element={<FAQs />} />
@@ -73,6 +72,7 @@ function App() {
             <Route path="/help" element={<HelpCenter />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>

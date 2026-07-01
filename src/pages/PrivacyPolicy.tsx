@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { LegalPageLayout } from '../components/premium/ContentPageShell';
 
 const PrivacyPolicy = () => {
   const sections = [
@@ -83,131 +84,73 @@ const PrivacyPolicy = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-            >
-              Privacy Policy
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-gray-600 mb-8"
-            >
-              Your privacy is important to us. This policy explains how we collect, use, and protect your information.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-sm text-gray-500"
-            >
-              Last updated: January 1, 2024
-            </motion.div>
-          </div>
+    <LegalPageLayout
+      title="Privacy Policy"
+      description="Your privacy is important to us. This policy explains how we collect, use, and protect your information."
+      updated="January 1, 2024"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-section space-y-4"
+      >
+        <p>
+          ArionexTech (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy and ensuring the security of your personal information.
+          This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website,
+          use our services, or interact with our software products.
+        </p>
+        <p>
+          By using our services, you agree to the collection and use of information in accordance with this policy.
+          If you do not agree with our policies and practices, please do not use our services.
+        </p>
+      </motion.div>
+
+      {sections.map((section, index) => (
+        <motion.div
+          key={section.title}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.05 }}
+          className="legal-section space-y-4"
+        >
+          <h2>{index + 1}. {section.title}</h2>
+          {section.content.map((item) => (
+            <p key={item.slice(0, 48)}>{item}</p>
+          ))}
+        </motion.div>
+      ))}
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-section"
+      >
+        <h2>9. Contact Us</h2>
+        <div className="legal-contact-box mt-4 space-y-2">
+          <p>If you have any questions about this Privacy Policy, please contact us:</p>
+          <p><strong>Email:</strong> privacy@arionextech.com</p>
+          <p><strong>Address:</strong> 43A, Vijay Nagar, Jabalpur, MP 482002, India</p>
+          <p><strong>Phone:</strong> +91 88170 88544</p>
         </div>
-      </section>
+      </motion.div>
 
-      {/* Privacy Policy Content */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            {/* Introduction */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-600 leading-relaxed">
-                  ArionexTech ("we," "our," or "us") is committed to protecting your privacy and ensuring the security of your personal information. 
-                  This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, 
-                  use our services, or interact with our software products.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  By using our services, you agree to the collection and use of information in accordance with this policy. 
-                  If you do not agree with our policies and practices, please do not use our services.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Policy Sections */}
-            {sections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="mb-12"
-              >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  {index + 1}. {section.title}
-                </h2>
-                <div className="space-y-4">
-                  {section.content.map((item, itemIndex) => (
-                    <p key={itemIndex} className="text-gray-600 leading-relaxed">
-                      {item}
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                9. Contact Us
-              </h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  If you have any questions about this Privacy Policy, please contact us:
-                </p>
-                <div className="space-y-2 text-gray-600">
-                  <p><strong>Email:</strong> privacy@arionextech.com</p>
-                  <p><strong>Address:</strong> 123 Tech Street, Jabalpur, MP 482001, India</p>
-                  <p><strong>Phone:</strong> +91 (761) 123-4567</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Updates Notice */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-blue-50 border border-blue-200 rounded-lg p-6"
-            >
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                Policy Updates
-              </h3>
-              <p className="text-blue-800">
-                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new 
-                Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy 
-                periodically for any changes.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-    </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="legal-callout"
+      >
+        <h3>Policy Updates</h3>
+        <p className="mt-2">
+          We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new
+          Privacy Policy on this page and updating the &quot;Last updated&quot; date. You are advised to review this Privacy Policy
+          periodically for any changes.
+        </p>
+      </motion.div>
+    </LegalPageLayout>
   );
 };
 

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ChevronDownIcon, ChevronUpIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import PageHero from '../components/premium/PageHero';
 
 const FAQs = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -111,41 +112,17 @@ const FAQs = () => {
   };
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 overflow-hidden">
-        {/* Fallback background pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-        {/* Animated elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <QuestionMarkCircleIcon className="h-4 w-4 mr-2" />
-              Support Center
-            </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Frequently Asked <span className="bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Questions</span>
-            </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Find answers to common questions about our services, products, and processes. 
-              Get the information you need to make informed decisions.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="bg-[#050508] min-h-screen">
+      <PageHero
+        badge="Support Center"
+        title="Frequently Asked"
+        highlight="Questions"
+        description="Find answers to common questions about our services, products, and processes. Get the information you need to make informed decisions."
+      />
 
       {/* FAQs Content */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <div className="max-w-4xl mx-auto">
             {faqs.map((category, categoryIndex) => (
               <motion.div
@@ -156,7 +133,7 @@ const FAQs = () => {
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
                 className="mb-12"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-primary">
+                <h2 className="text-2xl font-bold text-white mb-6 pb-2 border-b-2 border-primary">
                   {category.category}
                 </h2>
                 
@@ -168,13 +145,13 @@ const FAQs = () => {
                     return (
                       <div
                         key={questionIndex}
-                        className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden"
+                        className="card-premium border border-white/10 overflow-hidden"
                       >
                         <button
                           onClick={() => toggleFAQ(categoryIndex, questionIndex)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-[#08080e] transition-colors"
                         >
-                          <span className="text-lg font-medium text-gray-900 pr-4">
+                          <span className="text-lg font-medium text-white pr-4">
                             {faq.question}
                           </span>
                           {isOpen ? (
@@ -193,7 +170,7 @@ const FAQs = () => {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="px-6 pb-4 text-gray-600 leading-relaxed">
+                          <div className="px-6 pb-4 text-slate-400 leading-relaxed">
                             {faq.answer}
                           </div>
                         </motion.div>
@@ -208,8 +185,8 @@ const FAQs = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 cta-section text-white">
+        <div className="container-premium text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -223,7 +200,7 @@ const FAQs = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                className="btn btn-ghost"
               >
                 Contact Us
               </a>

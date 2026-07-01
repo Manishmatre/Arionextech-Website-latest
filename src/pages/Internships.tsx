@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import PageHero from '../components/premium/PageHero';
 import {
   AcademicCapIcon,
   ClockIcon,
@@ -245,39 +246,17 @@ const Internships: React.FC = () => {
   });
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 overflow-hidden">
-        {/* Fallback background pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-        {/* Animated elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <AcademicCapIcon className="h-4 w-4 mr-2" />
-              Professional Training Programs
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Internship</span> Programs
-            </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Launch your tech career with our comprehensive internship programs. Get hands-on experience, industry mentorship, and job placement support.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="bg-[#050508] min-h-screen">
+      <PageHero
+        badge="Professional Training Programs"
+        title="Internship"
+        highlight="Programs"
+        description="Launch your tech career with our comprehensive internship programs. Get hands-on experience, industry mentorship, and job placement support."
+      />
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-16 border-b border-white/8">
+        <div className="container-premium">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
@@ -291,8 +270,8 @@ const Internships: React.FC = () => {
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary">
                   {stat.icon}
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.number}</div>
+                <div className="text-slate-400">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -300,8 +279,8 @@ const Internships: React.FC = () => {
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 bg-white border-b">
-        <div className="container mx-auto px-4">
+      <section className="py-8 border-b border-white/10">
+        <div className="container-premium">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
@@ -310,7 +289,7 @@ const Internships: React.FC = () => {
                 className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
                   activeFilter === category.id
                     ? 'bg-primary text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-white/5 text-slate-300 hover:bg-white/10'
                 }`}
               >
                 {category.icon && <span className="mr-2">{category.icon}</span>}
@@ -324,7 +303,7 @@ const Internships: React.FC = () => {
 
       {/* Programs Grid */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPrograms.map((program, index) => (
               <motion.div
@@ -333,7 +312,7 @@ const Internships: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                className="card-premium hover:shadow-xl transition-all duration-300 overflow-hidden group"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -362,15 +341,15 @@ const Internships: React.FC = () => {
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{program.title}</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">{program.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-2">{program.title}</h3>
+                  <p className="text-slate-400 mb-4 line-clamp-2">{program.description}</p>
                   
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center text-gray-500">
+                    <div className="flex items-center text-slate-500">
                       <ClockIcon className="h-4 w-4 mr-1" />
                       <span className="text-sm">{program.duration}</span>
                     </div>
-                    <div className="flex items-center text-gray-500">
+                    <div className="flex items-center text-slate-500">
                       <UserGroupIcon className="h-4 w-4 mr-1" />
                       <span className="text-sm">{program.students}</span>
                     </div>
@@ -380,13 +359,13 @@ const Internships: React.FC = () => {
                     {program.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded"
+                        className="text-xs bg-white/5 text-slate-300 px-2 py-1 rounded"
                       >
                         {tech}
                       </span>
                     ))}
                     {program.technologies.length > 3 && (
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-slate-500">
                         +{program.technologies.length - 3} more
                       </span>
                     )}
@@ -394,7 +373,7 @@ const Internships: React.FC = () => {
                   
                   <div className="flex flex-wrap gap-2 mb-6">
                     {program.features.map((feature) => (
-                      <div key={feature} className="flex items-center text-sm text-gray-600">
+                      <div key={feature} className="flex items-center text-sm text-slate-400">
                         <CheckCircleIcon className="h-4 w-4 text-green-500 mr-1" />
                         {feature}
                       </div>
@@ -415,15 +394,15 @@ const Internships: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary to-primary-dark">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-16 cta-section">
+        <div className="container-premium text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="section-heading">
               Ready to Start Your Tech Journey?
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
@@ -432,7 +411,7 @@ const Internships: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/contact"
-                className="btn bg-white text-primary hover:bg-gray-100"
+                className="btn btn-ghost"
               >
                 Apply Today
               </Link>

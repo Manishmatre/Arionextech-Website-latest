@@ -15,6 +15,7 @@ import {
   CheckCircleIcon
 } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import PageHero from '../components/premium/PageHero';
 
 const HelpCenter = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -157,58 +158,28 @@ const HelpCenter = () => {
   );
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 overflow-hidden">
-        {/* Fallback background pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-        {/* Animated elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <QuestionMarkCircleIcon className="h-4 w-4 mr-2" />
-              Support & Documentation
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Help <span className="bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Center</span>
-            </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Find answers, get support, and learn how to make the most of our products.
-            </p>
-
-            {/* Search Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-2xl mx-auto"
-            >
-              <div className="relative">
-                <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search for help articles, guides, or tutorials..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-lg bg-white/95 backdrop-blur-sm"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
+    <div className="bg-[#050508] min-h-screen">
+      <PageHero
+        badge="Support & Documentation"
+        title="Help"
+        highlight="Center"
+        description="Find answers, get support, and learn how to make the most of our products."
+      >
+        <div className="relative max-w-2xl mt-8">
+          <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-500" />
+          <input
+            type="text"
+            placeholder="Search for help articles, guides, or tutorials..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 focus:ring-2 focus:ring-primary focus:border-transparent text-lg bg-white/5 backdrop-blur-sm text-white placeholder:text-slate-500"
+          />
         </div>
-      </section>
+      </PageHero>
 
       {/* Support Categories */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -216,10 +187,10 @@ const HelpCenter = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Browse by <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Category</span>
+            <h2 className="section-heading">
+              Browse by <span className="highlight">Category</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Find the help you need organized by topic and product area.
             </p>
           </motion.div>
@@ -232,16 +203,16 @@ const HelpCenter = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
+                className="card-premium p-8 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6 group-hover:bg-primary/20 transition-colors">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{category.title}</h3>
-                <p className="text-gray-600 mb-6">{category.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-white">{category.title}</h3>
+                <p className="text-slate-400 mb-6">{category.description}</p>
                 <ul className="space-y-2">
                   {category.articles.slice(0, 3).map((article, articleIndex) => (
-                    <li key={articleIndex} className="flex items-center text-sm text-gray-500">
+                    <li key={articleIndex} className="flex items-center text-sm text-slate-500">
                       <BookOpenIcon className="h-4 w-4 mr-2 text-primary" />
                       {article}
                     </li>
@@ -259,8 +230,8 @@ const HelpCenter = () => {
       </section>
 
       {/* Popular Articles */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -268,10 +239,10 @@ const HelpCenter = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Popular <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Articles</span>
+            <h2 className="section-heading">
+              Popular <span className="highlight">Articles</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Most viewed help articles and guides from our community.
             </p>
           </motion.div>
@@ -284,12 +255,12 @@ const HelpCenter = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-md p-6 mb-4 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                className="card-premium p-6 mb-4 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{article.title}</h3>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <h3 className="text-lg font-semibold text-white mb-2">{article.title}</h3>
+                    <div className="flex items-center space-x-4 text-sm text-slate-500">
                       <span className="bg-primary/10 text-primary px-2 py-1 rounded-full">
                         {article.category}
                       </span>
@@ -300,7 +271,7 @@ const HelpCenter = () => {
                       <span>{article.views}</span>
                     </div>
                   </div>
-                  <BookOpenIcon className="h-5 w-5 text-gray-400" />
+                  <BookOpenIcon className="h-5 w-5 text-slate-500" />
                 </div>
               </motion.div>
             ))}
@@ -310,7 +281,7 @@ const HelpCenter = () => {
 
       {/* Contact Support */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -318,10 +289,10 @@ const HelpCenter = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Still Need <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Help?</span>
+            <h2 className="section-heading">
+              Still Need <span className="highlight">Help?</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Can't find what you're looking for? Our support team is here to help you.
             </p>
           </motion.div>
@@ -334,16 +305,16 @@ const HelpCenter = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 ${
+                className={`card-premium p-8 text-center hover:shadow-xl transition-all duration-300 ${
                   option.primary ? 'ring-2 ring-primary ring-opacity-20' : ''
                 }`}
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
                   {option.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">{option.title}</h3>
-                <p className="text-gray-600 mb-4">{option.description}</p>
-                <div className="flex items-center justify-center text-sm text-gray-500 mb-6">
+                <h3 className="text-xl font-semibold mb-3 text-white">{option.title}</h3>
+                <p className="text-slate-400 mb-4">{option.description}</p>
+                <div className="flex items-center justify-center text-sm text-slate-500 mb-6">
                   <ClockIcon className="h-4 w-4 mr-1" />
                   {option.availability}
                 </div>
@@ -366,8 +337,8 @@ const HelpCenter = () => {
       </section>
 
       {/* Quick Links */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#08080e]">
+        <div className="container-premium">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -375,10 +346,10 @@ const HelpCenter = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Quick <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Links</span>
+            <h2 className="section-heading">
+              Quick <span className="highlight">Links</span>
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-slate-400">
               Jump to commonly accessed resources and pages.
             </p>
           </motion.div>
@@ -403,9 +374,9 @@ const HelpCenter = () => {
               >
                 <Link
                   to={link.path}
-                  className="block bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg hover:bg-primary/5 transition-all duration-300"
+                  className="block card-premium p-4 text-center hover:shadow-lg hover:bg-primary/5 transition-all duration-300"
                 >
-                  <span className="text-sm font-medium text-gray-900">{link.name}</span>
+                  <span className="text-sm font-medium text-white">{link.name}</span>
                 </Link>
               </motion.div>
             ))}
