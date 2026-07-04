@@ -13,6 +13,8 @@ export interface PortfolioProject {
   technologies: string[];
   image: string;
   gallery?: string[];
+  galleryLabels?: string[];
+  featured?: boolean;
   duration: string;
   teamSize: number;
   status: string;

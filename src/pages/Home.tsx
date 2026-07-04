@@ -27,8 +27,9 @@ import {
 } from '../data/demoSiteData';
 
 import candelaImage from '../assets/projects_Images/candelapublicshool-website.png';
-import geotechImage from '../assets/projects_Images/geotech-website.png';
-import arionextechImage from '../assets/projects_Images/arionextech_website.png';
+import sesEducareImage from '../assets/projects_Images/SESEducare Website.png';
+import sesEducareErpImage from '../assets/projects_Images/SESeducare ERP CRM LMS.png';
+import luxuryEstatesImage from '../assets/projects_Images/LuxuryStates Website.png';
 
 const TECH_STACK = [
   'React', 'Node.js', 'TypeScript', 'MongoDB', 'AWS', 'PostgreSQL',
@@ -76,9 +77,29 @@ const PROCESS = [
 ];
 
 const SHOWCASE = [
-  { title: 'Candela Public School', image: candelaImage, tag: 'EdTech', url: 'https://candelapublicschool.com/' },
-  { title: 'Geotech Construction', image: geotechImage, tag: 'Construction', url: 'https://geotechsurvey.netlify.app/' },
-  { title: 'ArionexTech Platform', image: arionextechImage, tag: 'SaaS', url: '/' },
+  {
+    title: 'SES Educare',
+    image: sesEducareImage,
+    secondaryImage: sesEducareErpImage,
+    imageLabels: ['Website', 'LMS · ERP · CRM · CMS'],
+    tag: 'EdTech Platform',
+    url: 'https://seseducare.com/',
+    slug: 'ses-educare',
+  },
+  {
+    title: 'Candela Public School',
+    image: candelaImage,
+    tag: 'EdTech',
+    url: 'https://candelapublicschool.com/',
+    slug: 'candela-public-school',
+  },
+  {
+    title: 'Luxury Estates',
+    image: luxuryEstatesImage,
+    tag: 'Real Estate',
+    url: 'https://luxuryestates.arionextech.com/',
+    slug: 'luxury-estates',
+  },
 ];
 
 function statusColor(status: string) {
@@ -260,32 +281,60 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {SHOWCASE.map((project, i) => (
-              <motion.a
+              <motion.div
                 key={project.title}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="group card-premium overflow-hidden"
               >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-5 flex items-center justify-between">
-                  <div>
-                    <span className="text-xs text-indigo-400 font-medium uppercase tracking-wider">{project.tag}</span>
-                    <h3 className="font-display font-bold text-white mt-1">{project.title}</h3>
+                <Link to={`/projects/${project.slug}`} className="block">
+                  <div className="aspect-[16/10] overflow-hidden">
+                    {'secondaryImage' in project && project.secondaryImage ? (
+                      <div className="grid grid-cols-2 h-full">
+                        <div className="relative h-full">
+                          <img
+                            src={project.image}
+                            alt={`${project.title} — ${project.imageLabels?.[0] || 'website'}`}
+                            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          />
+                          {project.imageLabels?.[0] && (
+                            <span className="absolute bottom-2 left-2 text-[9px] font-semibold uppercase tracking-wider bg-black/55 text-white px-2 py-0.5 rounded-full">
+                              {project.imageLabels[0]}
+                            </span>
+                          )}
+                        </div>
+                        <div className="relative h-full border-l border-white/10">
+                          <img
+                            src={project.secondaryImage}
+                            alt={`${project.title} — ${project.imageLabels?.[1] || 'platform'}`}
+                            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          />
+                          {project.imageLabels?.[1] && (
+                            <span className="absolute bottom-2 left-2 text-[9px] font-semibold uppercase tracking-wider bg-indigo-600/80 text-white px-2 py-0.5 rounded-full">
+                              {project.imageLabels[1]}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
                   </div>
-                  <GlobeAltIcon className="w-5 h-5 text-slate-500 group-hover:text-indigo-400 transition-colors" />
-                </div>
-              </motion.a>
+                  <div className="p-5 flex items-center justify-between">
+                    <div>
+                      <span className="text-xs text-indigo-400 font-medium uppercase tracking-wider">{project.tag}</span>
+                      <h3 className="font-display font-bold text-white mt-1">{project.title}</h3>
+                    </div>
+                    <GlobeAltIcon className="w-5 h-5 text-slate-500 group-hover:text-indigo-400 transition-colors" />
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
 

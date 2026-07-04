@@ -16,6 +16,10 @@ interface PortfolioCardProps {
 
 export default function PortfolioCard({ project, index }: PortfolioCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const secondaryImage =
+    project.gallery && project.gallery.length > 1
+      ? project.gallery.find((img) => img !== project.image) ?? project.gallery[1]
+      : null;
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useSpring(0, { stiffness: 260, damping: 22 });
@@ -70,13 +74,33 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
         className="relative block card-premium overflow-hidden border border-white/8 group-hover:border-indigo-500/35 transition-colors duration-400"
       >
         <div className="relative overflow-hidden">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-48 object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-          />
+          {secondaryImage ? (
+            <div className="grid grid-cols-2 h-52">
+              <img
+                src={project.image}
+                alt={`${project.title} — ${project.galleryLabels?.[0] || 'preview'}`}
+                className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <img
+                src={secondaryImage}
+                alt={`${project.title} — ${project.galleryLabels?.[1] || 'platform'}`}
+                className="w-full h-full object-cover object-top border-l border-white/10 transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            </div>
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-48 object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-[#050508]/90 via-[#050508]/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
           <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+            {project.featured && (
+              <span className="text-[10px] font-semibold uppercase tracking-wide bg-amber-500/90 text-white px-2 py-1 rounded-full shadow-lg">
+                Featured
+              </span>
+            )}
             {project.isFromErp && (
               <span className="text-[10px] font-semibold uppercase tracking-wide bg-indigo-600 text-white px-2 py-1 rounded-full shadow-lg">
                 ERP Live

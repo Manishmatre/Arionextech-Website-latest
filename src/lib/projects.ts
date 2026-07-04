@@ -80,11 +80,17 @@ export function getStaticProjects(): PortfolioProject[] {
   return STATIC_PORTFOLIO_PROJECTS;
 }
 
+function sortFeaturedFirst(projects: PortfolioProject[]): PortfolioProject[] {
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
+  return [...featured, ...rest];
+}
+
 export async function getAllProjects(): Promise<PortfolioProject[]> {
   const erp = await loadErpProjects();
   const staticSlugs = new Set(STATIC_PORTFOLIO_PROJECTS.map((p) => p.slug));
   const uniqueErp = erp.filter((p) => !staticSlugs.has(p.slug));
-  return [...uniqueErp, ...STATIC_PORTFOLIO_PROJECTS];
+  return sortFeaturedFirst([...STATIC_PORTFOLIO_PROJECTS, ...uniqueErp]);
 }
 
 export async function getProjectBySlug(slug: string): Promise<PortfolioProject | null> {

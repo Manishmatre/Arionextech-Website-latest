@@ -100,11 +100,30 @@ export default function ProjectCaseStudy({ project, related = [] }: ProjectCaseS
                 className="relative"
               >
                 <div className="absolute -inset-4 bg-indigo-500/20 rounded-3xl blur-3xl pointer-events-none" />
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="relative rounded-2xl border border-white/10 shadow-2xl w-full aspect-[4/3] object-cover"
-                />
+                {gallery.length >= 2 ? (
+                  <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {gallery.slice(0, 2).map((src, i) => (
+                      <div key={src} className="relative">
+                        {project.galleryLabels?.[i] && (
+                          <span className="absolute top-3 left-3 z-10 text-[10px] font-semibold uppercase tracking-wider bg-black/50 backdrop-blur-md text-white px-2.5 py-1 rounded-full border border-white/15">
+                            {project.galleryLabels[i]}
+                          </span>
+                        )}
+                        <img
+                          src={src}
+                          alt={`${project.title} — ${project.galleryLabels?.[i] || `view ${i + 1}`}`}
+                          className="relative rounded-2xl border border-white/10 shadow-2xl w-full aspect-[4/3] object-cover object-top"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="relative rounded-2xl border border-white/10 shadow-2xl w-full aspect-[4/3] object-cover"
+                  />
+                )}
               </motion.div>
             </div>
           </motion.div>
@@ -178,15 +197,15 @@ export default function ProjectCaseStudy({ project, related = [] }: ProjectCaseS
         </div>
       </section>
 
-      {/* Gallery */}
-      {gallery.length > 1 && (
+      {/* Gallery — extra screenshots beyond hero pair */}
+      {gallery.length > 2 && (
         <section className="py-16 section-surface border-y border-white/8">
           <div className="container-premium">
             <h2 className="section-heading text-center mb-10">
-              Project <span className="highlight">screenshots</span>
+              More <span className="highlight">screenshots</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {gallery.map((src, i) => (
+              {gallery.slice(2).map((src, i) => (
                 <motion.img
                   key={src + i}
                   initial={{ opacity: 0, y: 16 }}
@@ -194,7 +213,7 @@ export default function ProjectCaseStudy({ project, related = [] }: ProjectCaseS
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
                   src={src}
-                  alt={`${project.title} screenshot ${i + 1}`}
+                  alt={`${project.title} screenshot ${i + 3}`}
                   className="rounded-xl border border-white/10 w-full object-cover aspect-video"
                 />
               ))}
